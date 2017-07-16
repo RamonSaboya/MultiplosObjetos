@@ -31,20 +31,20 @@ var addFile = function(param) {
       reader.onloadend = function(event){
         objectsFiles.push(reader.result);
       }
-      document.getElementById("objects").innerHTML = "<p id='objects'>" + txtObj + "</p>";
+      document.getElementById("objects").innerHTML = txtObj;
     } else if (param == "cam") {
       txtCam = files[i].name;
       reader.onloadend = function(event){
         cameraFile = reader.result;
         startCamera();
       }
-      document.getElementById("camera").innerHTML = "<p id='objects'>" + txtCam + "</p>";
+      document.getElementById("camera").innerHTML = txtCam;
     } else {
       txtIlu = files[i].name;
       reader.onloadend = function(event){
         iluminationFile = reader.result;
       }
-      document.getElementById("ilumination").innerHTML = "<p id='objects'>" + txtIlu + "</p>";
+      document.getElementById("ilumination").innerHTML = txtIlu;
     }
   }
 }
