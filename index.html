@@ -7,6 +7,7 @@
     <link rel="icon" href="./assets/ghost.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <script src="files.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -14,18 +15,33 @@
         <h3> Múltiplos objetos </h3>
       </div>
     </div>
+
     <div class="container-fluid">
       <div class="params">
         <div class="view">
-          <p>Adicionar objetos</p>
-          <script src="files.js"></script>
+          <p><strong>Adicionar objetos</strong></p>
+          <div id="objects"></div>
           <label class="custom-file-upload">
-            <input type="file" id="myFile" onchange="addFile()"/>+
+            <input type="file" id="objs" onchange="addFile('objs')"/>+
+          </label>
+        </div>
+        <div class="view">
+          <p><strong>Câmera</strong></p>
+          <div id="camera"></div>
+          <label class="custom-file-upload">
+            <input type="file" id="cam" onchange="addFile('cam')"/>+
+          </label>
+        </div>
+        <div class="view">
+          <p><strong>Iluminação</strong></p>
+          <div id="ilumination"></div>
+          <label class="custom-file-upload">
+            <input type="file" id="ilum" onchange="addFile('ilum')"/>+
           </label>
         </div>
       </div>
     </div>
-    
+
     <div class="stage" id="canvas">
       <canvas id="myCanvas" width="200" height="300"> </canvas>
       <script src="canvas.js"></script>
