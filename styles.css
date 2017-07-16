@@ -18,11 +18,6 @@ body {
   background-size: 70px 120px;
 }
 
-label {
-  color: black;
-  font-family: coco-gothic;
-}
-
 .title {
   text-align: center;
   margin: 0 auto;
@@ -68,18 +63,6 @@ label {
 
 p {
   border-bottom: thin solid #f8fce8;
-}
-
-.text {
-  text-align: center;
-  margin-left: 5px;
-  width: 10%;
-  border: none;
-  border-radius: 25px;
-}
-
-.item {
-  /*border-bottom: thin solid black;*/
 }
 
 .add {
