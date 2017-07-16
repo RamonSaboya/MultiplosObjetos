@@ -7,7 +7,9 @@
     <link rel="icon" href="./assets/ghost.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <script src="files.js"></script>
+
+    <script src="./js/Application/camera.js"></script>
+    <script src="./js/Functions/fileUpload.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -20,21 +22,21 @@
       <div class="params">
         <div class="view">
           <p><strong>Adicionar objetos</strong></p>
-          <div id="objects"></div>
+          <div id="objects">Adicione um arquivo</div>
           <label class="custom-file-upload">
-            <input type="file" id="objs" onchange="addFile('objs')"/>+
+            <input type="file" id="objs" multiple onchange="addFile('objs')"/>+
           </label>
         </div>
         <div class="view">
           <p><strong>Câmera</strong></p>
-          <div id="camera"></div>
+          <div id="camera">Adicione um arquivo</div>
           <label class="custom-file-upload">
             <input type="file" id="cam" onchange="addFile('cam')"/>+
           </label>
         </div>
         <div class="view">
           <p><strong>Iluminação</strong></p>
-          <div id="ilumination"></div>
+          <div id="ilumination">Adicione um arquivo</div>
           <label class="custom-file-upload">
             <input type="file" id="ilum" onchange="addFile('ilum')"/>+
           </label>
@@ -43,7 +45,7 @@
       </div>
     </div>
 
-    <!-- <button onclick="test()"></button> -->
+    <button onclick="test()"> Test Shit!</button>
 
     <div class="stage" id="canvas">
       <canvas id="myCanvas" width="200" height="300"> </canvas>
