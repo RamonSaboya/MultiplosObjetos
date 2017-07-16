@@ -14,18 +14,20 @@
         <h3> Múltiplos objetos </h3>
       </div>
     </div>
+
     <div class="container-fluid">
       <div class="params">
         <div class="view">
-          <p>Adicionar objetos</p>
+          <p><strong>Adicionar objetos</strong></p>
+          <div id="objects"></div>
           <script src="files.js"></script>
           <label class="custom-file-upload">
-            <input type="file" id="myFile" onchange="addFile()"/>+
+            <input type="file" id="objs" onchange="addObjects()"/>+
           </label>
         </div>
       </div>
     </div>
-    
+
     <div class="stage" id="canvas">
       <canvas id="myCanvas" width="200" height="300"> </canvas>
       <script src="canvas.js"></script>
