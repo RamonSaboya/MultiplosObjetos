@@ -7,6 +7,7 @@
     <link rel="icon" href="./assets/ghost.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
+    <script src="files.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -20,9 +21,22 @@
         <div class="view">
           <p><strong>Adicionar objetos</strong></p>
           <div id="objects"></div>
-          <script src="files.js"></script>
           <label class="custom-file-upload">
-            <input type="file" id="objs" onchange="addObjects()"/>+
+            <input type="file" id="objs" onchange="addFile('objs')"/>+
+          </label>
+        </div>
+        <div class="view">
+          <p><strong>Câmera</strong></p>
+          <div id="camera"></div>
+          <label class="custom-file-upload">
+            <input type="file" id="cam" onchange="addFile('cam')"/>+
+          </label>
+        </div>
+        <div class="view">
+          <p><strong>Iluminação</strong></p>
+          <div id="ilumination"></div>
+          <label class="custom-file-upload">
+            <input type="file" id="ilum" onchange="addFile('ilum')"/>+
           </label>
         </div>
       </div>
