@@ -25,7 +25,7 @@ Vector.prototype.innerProduct = function(vector){
 };
 
 Vector.prototype.gramSchmidt = function(vector){
-  return vector.subtraction(this.orthogonalProjection(vector)); //perguntar pra ramon
+  return this.subtraction(vector.orthogonalProjection(this));
 };
 
 Vector.prototype.orthogonalProjection = function(vector){
