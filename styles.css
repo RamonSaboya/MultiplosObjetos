@@ -76,11 +76,18 @@ input[type='file'] {
 }
 
 .custom-file-upload {
-  border: 1px solid #ccc;
   border-radius: 30px;
   display: inline-block;
   padding: 6px 12px;
   cursor: pointer;
+  background-color: #f8fce8;
+  -webkit-box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+  box-shadow: 1px 1px 6px 0px rgba(0,0,0,0.75);
+}
+
+.custom-file-upload:hover {
+  background-color: #dfe0de;
 }
 
 #objects {
