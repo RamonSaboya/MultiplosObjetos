@@ -1,6 +1,9 @@
+/* These variables are strings of the files */
 var objectsFiles = [];
 var iluminationFile;
 var cameraFile;
+
+/* These variables are the string on the HTML file */
 var txtObj = '';
 var txtCam = '';
 var txtIlu = '';
@@ -12,7 +15,6 @@ var addFile = function(param) {
 
   for(i = 0; i < files.length; i++) {
     reader.readAsBinaryString(files[i]);
-    var txt = '';
 
     if(param == "objs"){
       objectsFiles.push(files[i]);
