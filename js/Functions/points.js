@@ -14,10 +14,11 @@ function Point2D (x, y, index) {
 }
 
 // funcoes de pontos 3D
-Point3D.prototype.changeBase = function() {
+Point3D.prototype.changeBase = function(triangles) {
   var pWorld = this;
   var v = pWorld.subtraction(camera.c);
   var pView = v.matrixProduct(camera.alpha);
+  pView.triangles = triangles;
 
   return pView;
 }

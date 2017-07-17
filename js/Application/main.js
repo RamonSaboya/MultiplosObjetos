@@ -1,9 +1,9 @@
 var start = function(){
 
   /* Changing the base of the point based on the camera */
-  points.forEach(function(object, i){
-    object.forEach(function(point, j){
-      points[i][j] = point.changeBase();
+  points.forEach(function(obj, i){
+    obj.forEach(function(point, j){
+      points[i][j] = point.changeBase(points[i][j].triangles);
     });
   });
 
@@ -14,12 +14,16 @@ var start = function(){
       triangles[i][j].point2 = points[i][triangle.point2];
       triangles[i][j].point3 = points[i][triangle.point3];
 
-      /* Calculating triangle normal vectors */
-
-
-
+      /* Setting triangle normal vectors */
+      triangles[i][j].setNormal();
     });
   });
 
-  console.log(points);
+  points.forEach(function(obj, i){
+    obj.forEach(function(point, j){
+      point.triangles.forEach(function(triangle){
+        points[i][j].normal = points[i][j].normal.sum(triangle.normal);
+      });
+    });
+  });
 }

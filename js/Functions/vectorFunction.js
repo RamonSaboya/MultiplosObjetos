@@ -12,14 +12,22 @@ Vector.prototype.norm = function(){
 // Função de normalização do vetor
 Vector.prototype.normalize = function(vector) {
   var norm = this.norm();
-  
+
   if (norm == 0) {
     return;
   }
-   
+
   this.x /= norm;
   this.y /= norm;
   this.z /= norm;
+}
+
+Vector.prototype.sum = function(vector){
+  var x = this.x + vector.x;
+  var y = this.y + vector.y;
+  var z = this.z + vector.z;
+  var ret = new Vector(x, y, z);
+  return ret;
 }
 
 // Função do produto interno entre dois vetores
@@ -27,7 +35,7 @@ Vector.prototype.innerProduct = function(vector){
   return (this.x * vector.x + this.y * vector.y + this.z * vector.z);
 }
 
-// Processo de Gram Schmidt 
+// Processo de Gram Schmidt
 Vector.prototype.gramSchmidt = function(vector){
   return this.subtraction(vector.orthogonalProjection(this));
 }
@@ -35,9 +43,9 @@ Vector.prototype.gramSchmidt = function(vector){
 // Projeção ortogonal de vetores
 Vector.prototype.orthogonalProjection = function(vector){
   var result = this.innerProduct(vector) / this.innerProduct(this);
-  
+
   var vec = this;
-  
+
   return vec.scalarProduct(result);
 }
 
@@ -46,7 +54,7 @@ Vector.prototype.scalarProduct = function(value){
   var x = this.x * value;
   var y = this.y * value;
   var z = this.z * value;
-    
+
   return new Vector(x, y, z);
 }
 
@@ -55,7 +63,7 @@ Vector.prototype.subtraction = function(vector){
   var x = this.x - vector.x;
   var y = this.y - vector.y;
   var z = this.z - vector.z;
-  
+
   return new Vector(x, y, z);
 }
 
