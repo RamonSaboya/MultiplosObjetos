@@ -10,13 +10,13 @@ Point3D.prototype.clonePoint = function() {
 };
 
 Point3D.prototype.baseChange = function(camera) {
-  var plWorld = this.clonePoint();
+  var pWorld = this.clonePoint();
   
-  var v = plWorld.subtraction(camera.c);
+  var v = pWorld.subtraction(camera.c);
   
-  var plView = v.matrixProduct(camera.alpha);
+  var pView = v.matrixProduct(camera.alpha);
   
-  return plView;
+  return pView;
 };
 
 Point3D.prototype.subtraction = function(point){
@@ -34,3 +34,4 @@ Point3D.prototype.matrixProduct = function(matrix) {
 
   return new Point3D(x, y, z);
 };
+
