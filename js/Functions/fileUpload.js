@@ -15,19 +15,8 @@ var addFile = function(param) {
 
   for(i = 0; i < files.length; i++) {
 
-    /*
-     * In case multiple objects are loaded.
-     * You can only read a file if you're not reading another one
-    */
-    if(i > 1) {
-      console.log('1');
-      reader.onloadend = function(event) {
-        reader.readAsBinaryString(files[i]);
-      }
-    } else {
-      console.log('2');
-      reader.readAsBinaryString(files[i]);
-    }
+    reader.readAsBinaryString(files[i]);
+    
     if(param == "objs"){
       if (objectsFiles.length >= 1) txtObj += " | "
       txtObj += files[i].name;
