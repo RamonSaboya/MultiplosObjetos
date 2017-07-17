@@ -40,6 +40,7 @@ var addFile = function(param) {
       txtIlu = files[i].name;
       reader.onloadend = function(event){
         illuminationFile = reader.result;
+        startIllumination();
       }
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
