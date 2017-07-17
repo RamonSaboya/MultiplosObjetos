@@ -26,3 +26,11 @@ Point3D.prototype.subtraction = function(point){
 
   return new Point3D(x, y, z);  
 };
+
+Point3D.prototype.matrixProduct = function(matrix) {
+  var x = (this.x * matrix[0][0]) + (this.y * matrix[0][1]) + (this.z * matrix[0][2]);
+  var y = (this.x * matrix[1][0]) + (this.y * matrix[1][1]) + (this.z * matrix[1][2]);
+  var z = (this.x * matrix[2][0]) + (this.y * matrix[2][1]) + (this.z * matrix[2][2]);
+
+  return new Point3D(x, y, z);
+};
