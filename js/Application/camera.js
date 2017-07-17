@@ -23,7 +23,7 @@ function startCamera(){
     var getV = cameraFile[2].split(' ');
     var getTela = cameraFile[3].split(' ');
 
-    console.log(getTela);
+
 
     var c = new Point3D(getC[0], getC[1], getC[2]);
     var n = new Vector(getN[0], getN[1], getN[2]);

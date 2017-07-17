@@ -19,14 +19,17 @@ var addFile = function(param) {
      * In case multiple objects are loaded.
      * You can only read a file if you're not reading another one
     */
-    reader.onloadend = function(event){
+    if(i > 1) {
+      console.log('1');
+      reader.onloadend = function(event) {
+        reader.readAsBinaryString(files[i]);
+      }
+    } else {
+      console.log('2');
       reader.readAsBinaryString(files[i]);
     }
-
     if(param == "objs"){
-      console.log('Hey');
-      objectsFiles.push(files[i]);
-      if (objectsFiles.length > 1) txtObj += " | "
+      if (objectsFiles.length >= 1) txtObj += " | "
       txtObj += files[i].name;
       reader.onloadend = function(event){
         objectsFiles.push(reader.result);
@@ -35,6 +38,7 @@ var addFile = function(param) {
     } else if (param == "cam") {
       txtCam = files[i].name;
       reader.onloadend = function(event){
+        console.log('hey');
         cameraFile = reader.result;
         startCamera();
       }
@@ -47,11 +51,4 @@ var addFile = function(param) {
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
   }
-}
-
-
-
-
-var test = function(){
-  console.log(camera);
 }
