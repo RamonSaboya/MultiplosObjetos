@@ -5,18 +5,27 @@ function Point3D (x, y, z) {
   this.normal = new Vector(0, 0, 0);
 }
 
+function Point2D (x, y, index) {
+  this.x = x;
+  this.y = y;
+  this.index = index;
+  this.normal = new Vector(0, 0, 0);
+}
+
+Point2D.prototype.clonePoint = function() {
+  return new Point2D(this.x, this.y, this.index);
+};
+
 Point3D.prototype.clonePoint = function() {
   return new Point3D(this.x, this.y, this.z);
 };
 
 Point3D.prototype.baseChange = function(camera) {
-  var plWorld = this.clonePoint();
+  var pWorld = this.clonePoint();
+  var v = pWorld.subtraction(camera.c);
+  var pView = v.matrixProduct(camera.alpha);
   
-  var v = plWorld.subtraction(camera.c);
-  
-  var plView = v.matrixProduct(camera.alpha);
-  
-  return plView;
+  return pView;
 };
 
 Point3D.prototype.subtraction = function(point){
@@ -25,4 +34,17 @@ Point3D.prototype.subtraction = function(point){
   var z = this.z - point.z;
 
   return new Point3D(x, y, z);  
+};
+
+Point3D.prototype.matrixProduct = function(matrix) {
+  var x = (this.x * matrix[0][0]) + (this.y * matrix[0][1]) + (this.z * matrix[0][2]);
+  var y = (this.x * matrix[1][0]) + (this.y * matrix[1][1]) + (this.z * matrix[1][2]);
+  var z = (this.x * matrix[2][0]) + (this.y * matrix[2][1]) + (this.z * matrix[2][2]);
+
+  return new Point3D(x, y, z);
+};
+
+Point2D.prototype.round = function() {
+  this.x = Math.floor(this.x);
+  this.y = Math.floor(this.y);
 };
