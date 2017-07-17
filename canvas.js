@@ -7,3 +7,12 @@ c.height = height;
 c.width = width;
 
 var ctx = c.getContext("2d");
+
+
+var draw = function() {
+  points2D.forEach(function(obj){
+    obj.forEach(function(point){
+      ctx.fillRect(point.x,point.y,1,1);
+    });
+  });
+}

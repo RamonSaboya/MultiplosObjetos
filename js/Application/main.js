@@ -52,10 +52,6 @@ var start = function(){
     });
   });
 
-  console.log(points2D);
-  console.log(triangles2D);
-
-
-
+  draw();
 
 }
