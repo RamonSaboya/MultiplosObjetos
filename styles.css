@@ -108,6 +108,11 @@ input[type='file'] {
   margin-top: 10px;
 }
 
+#stbttn:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
 @font-face {
     font-family: coco-gothic;
     src: url('./assets/CocoGothic-Light_trial.ttf');

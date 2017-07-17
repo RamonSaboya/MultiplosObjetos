@@ -8,6 +8,14 @@ var txtObj = '';
 var txtCam = '';
 var txtIlu = '';
 
+var ableToStart = true;
+
+// if(ableToStart) {
+//   document.getElementById('startButton').innerHTML = '<button class="btn-primary" onclick="start()"> Vai na fé! </button>'
+// } else {
+//   document.getElementsByClassName('startButton').innerHTML = '<button class="btn-primary" onclick="start()" disabled> Vai na fé! </button>'
+// }
+
 var orderOfObjects = 0;
 
 var reader = new FileReader();

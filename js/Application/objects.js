@@ -23,7 +23,3 @@ var startObject = function(file, order) {
     }
   }
 }
-
-var test = function(){
-  console.log(values);
-}

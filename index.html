@@ -15,6 +15,7 @@
     <script src="./js/Application/camera.js"></script>
     <script src="./js/Application/objects.js"></script>
     <script src="./js/Application/illumination.js"></script>
+    <script src="./js/Application/main.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -46,7 +47,14 @@
             <input type="file" id="ilum" onchange="addFile('ilum')"/>+
           </label>
         </div>
-        <!-- <button class="btn-primary" onclick="getValues()"> Do It! </button> -->
+        <div id="startButton"></div>
+        <script>
+          if(ableToStart) {
+            document.getElementById('startButton').innerHTML = "<button id='stbttn' onclick='start()'>Start</button>"
+          } else {
+            document.getElementById('startButton').innerHTML = "<button id='stbttn' onclick='start()' disabled>Start</button>"
+          }
+        </script>
       </div>
     </div>
 
