@@ -16,7 +16,7 @@ var addFile = function(param) {
   for(i = 0; i < files.length; i++) {
 
     reader.readAsBinaryString(files[i]);
-    
+
     if(param == "objs"){
       if (objectsFiles.length >= 1) txtObj += " | "
       txtObj += files[i].name;
@@ -27,7 +27,6 @@ var addFile = function(param) {
     } else if (param == "cam") {
       txtCam = files[i].name;
       reader.onloadend = function(event){
-        console.log('hey');
         cameraFile = reader.result;
         startCamera();
       }
