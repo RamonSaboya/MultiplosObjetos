@@ -14,6 +14,7 @@ var startObject = function(file, order) {
     x = line.split(" ")[0];
     y = line.split(" ")[1];
     z = line.split(" ")[2];
+    
     if(i < qtdPoints+1) {
       point = new Point3D(x, y, z);
       points[order].push(point);

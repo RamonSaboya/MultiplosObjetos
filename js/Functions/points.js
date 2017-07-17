@@ -6,10 +6,9 @@ function Point3D (x, y, z) {
   this.normal = new Vector(0, 0, 0);
 }
 
-function Point2D (x, y, index) {
+function Point2D (x, y) {
   this.x = x;
   this.y = y;
-  this.index = index;
   this.normal = new Vector(0, 0, 0);
 }
 
@@ -39,18 +38,18 @@ Point3D.prototype.matrixProduct = function(matrix) {
   return new Point3D(x, y, z);
 }
 
-Point3D.prototype.transform2D = function(camera , index) {
+Point3D.prototype.transform2D = function() {
   var x = (camera.d / camera.hx) * (this.x / this.z);
   var y = (camera.d / camera.hy) * (this.y / this.z);
 
   x = (x + 1) * (width / 2);
-  y = (1 - x) * (height / 2);
+  y = (1 - y) * (height / 2);
 
-  var p2D = new Point2D(x, y, index);
+  var p2D = new Point2D(x, y);
   p2D.round();
-  p2d.normal = this.normal;
+  p2D.normal = this.normal;
 
-  return
+  return p2D;
 
 }
 
