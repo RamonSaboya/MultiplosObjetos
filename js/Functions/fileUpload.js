@@ -1,6 +1,6 @@
 /* These variables are strings of the files */
 var objectsFiles = [];
-var iluminationFile;
+var illuminationFile;
 var cameraFile;
 
 /* These variables are the string on the HTML file */
@@ -46,7 +46,7 @@ var addFile = function(param) {
     } else {
       txtIlu = files[i].name;
       reader.onloadend = function(event){
-        iluminationFile = reader.result;
+        illuminationFile = reader.result;
       }
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
