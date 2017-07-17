@@ -8,6 +8,8 @@ var txtObj = '';
 var txtCam = '';
 var txtIlu = '';
 
+var orderOfObjects = 0;
+
 var reader = new FileReader();
 
 var addFile = function(param) {
@@ -22,7 +24,10 @@ var addFile = function(param) {
       txtObj += files[i].name;
       reader.onloadend = function(event){
         objectsFiles.push(reader.result);
+        startObject(reader.result, orderOfObjects);
+        orderOfObjects++;
       }
+
       document.getElementById("objects").innerHTML = txtObj;
     } else if (param == "cam") {
       txtCam = files[i].name;
@@ -35,6 +40,7 @@ var addFile = function(param) {
       txtIlu = files[i].name;
       reader.onloadend = function(event){
         illuminationFile = reader.result;
+        startIllumination();
       }
       document.getElementById("ilumination").innerHTML = txtIlu;
     }

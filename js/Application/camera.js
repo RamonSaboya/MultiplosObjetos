@@ -37,7 +37,7 @@ function startCamera(){
     
 }
 
-Camera.generateAlpha = function(){
+Camera.prototype.generateAlpha = function(){
     this.n.normalize();
     this.v = this.v.gramSchmidt(this.n);
     this.v.normalize();
@@ -47,16 +47,4 @@ Camera.generateAlpha = function(){
     this.alpha.push([u.x, u.y, u.z]);
     this.alpha.push([this.v.x, this.v.y, this.v.z]);
     this.alpha.push([this.n.x, this.n.y, this.n.z]);
-}
-
-Camera.prototype.baseChange = function(point) {
-  return point.baseChange(this);
-}
-
-Camera.prototype.pointProjection = function(point) {
-  return point.pointProjection(this);
-}
-
-function isCameraReady(){
-    return camera != null;
 }
