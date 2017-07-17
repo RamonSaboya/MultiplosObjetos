@@ -33,10 +33,9 @@ function startCamera(){
 
     camera = new Camera(c, n, v, d, hx, hy);
     camera.generateAlpha();
-    
 }
 
-Camera.generateAlpha = function(){
+Camera.prototype.generateAlpha = function(){
     this.n.normalize();
     this.v = this.v.gramSchmidt(this.n);
     this.v.normalize();

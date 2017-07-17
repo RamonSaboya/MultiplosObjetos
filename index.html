@@ -9,7 +9,10 @@
     <meta name="viewport" content="width=device-width">
 
     <script src="./js/Application/camera.js"></script>
+    <script src="./js/Application/objects.js"></script>
     <script src="./js/Functions/fileUpload.js"></script>
+    <script src="./js/Functions/points.js"></script>
+    <script src="./js/Functions/vectorFunction.js"></script>
   </head>
   <body>
     <div class="container-fluid">
@@ -24,7 +27,7 @@
           <p><strong>Adicionar objetos</strong></p>
           <div id="objects">Adicione um arquivo</div>
           <label class="custom-file-upload">
-            <input type="file" id="objs" multiple onchange="addFile('objs')"/>+
+            <input type="file" id="objs" onchange="addFile('objs')"/>+
           </label>
         </div>
         <div class="view">
@@ -45,7 +48,7 @@
       </div>
     </div>
 
-    <button onclick="test()" style="text-align: center"> Test Shit!</button>
+    <button onclick="test()"> Test Shit!</button>
 
     <div class="stage" id="canvas">
       <canvas id="myCanvas" width="200" height="300"> </canvas>

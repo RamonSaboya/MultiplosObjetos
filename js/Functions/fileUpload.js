@@ -15,18 +15,10 @@ var addFile = function(param) {
 
   for(i = 0; i < files.length; i++) {
 
-    /*
-     * In case multiple objects are loaded.
-     * You can only read a file if you're not reading another one
-    */
-    reader.onloadend = function(event){
-      reader.readAsBinaryString(files[i]);
-    }
+    reader.readAsBinaryString(files[i]);
 
     if(param == "objs"){
-      console.log('Hey');
-      objectsFiles.push(files[i]);
-      if (objectsFiles.length > 1) txtObj += " | "
+      if (objectsFiles.length >= 1) txtObj += " | "
       txtObj += files[i].name;
       reader.onloadend = function(event){
         objectsFiles.push(reader.result);
@@ -47,11 +39,4 @@ var addFile = function(param) {
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
   }
-}
-
-
-
-
-var test = function(){
-  console.log(camera);
 }
