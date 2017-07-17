@@ -6,19 +6,21 @@ function Point3D (x, y, z) {
   this.normal = new Vector(0, 0, 0);
 }
 
-function Point2D (x, y) {
+function Point2D (x, y, i) {
   this.x = x;
   this.y = y;
+  this.index = i;
   this.normal = new Vector(0, 0, 0);
 }
 
 // funcoes de pontos 3D
-Point3D.prototype.changeBase = function(triangles) {
+Point3D.prototype.changeBase = function(triangles, i) {
   var pWorld = this;
   var v = pWorld.subtraction(camera.c);
   var pView = v.matrixProduct(camera.alpha);
   pView.triangles = triangles;
-
+  pView.index = i;
+  
   return pView;
 }
 
@@ -45,7 +47,7 @@ Point3D.prototype.transform2D = function() {
   x = (x + 1) * (width / 2);
   y = (1 - y) * (height / 2);
 
-  var p2D = new Point2D(x, y);
+  var p2D = new Point2D(x, y, i);
   p2D.round();
   p2D.normal = this.normal;
 

@@ -6,7 +6,7 @@ var start = function(){
   /* Changing the base of the point based on the camera */
   points.forEach(function(obj, i){
     obj.forEach(function(point, j){
-      points[i][j] = point.changeBase(points[i][j].triangles);
+      points[i][j] = point.changeBase(points[i][j].triangles, j);
     });
   });
 
@@ -41,7 +41,21 @@ var start = function(){
     });
   });
 
+  triangles.forEach(function(obj, i){
+    triangles2D[i] = [];
+    obj.forEach(function(triangle, j){
+      var p1 = points2D[i][triangle.point1.index];
+      var p2 = points2D[i][triangle.point2.index];
+      var p3 = points2D[i][triangle.point3.index];
+      var tri = new Triangle(p1, p2, p3);
+      triangles2D[i].push(tri);
+    });
+  });
+
   console.log(points2D);
+  console.log(triangles2D);
+
+
 
 
 }

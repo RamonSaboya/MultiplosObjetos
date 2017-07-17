@@ -14,9 +14,10 @@ var startObject = function(file, order) {
     x = line.split(" ")[0];
     y = line.split(" ")[1];
     z = line.split(" ")[2];
-    
+
     if(i < qtdPoints+1) {
       point = new Point3D(x, y, z);
+      point.index = i;
       points[order].push(point);
     } else {
       triangle = new Triangle(x-1, y-1, z-1);
