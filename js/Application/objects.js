@@ -18,7 +18,7 @@ var startObject = function(file, order) {
       point = new Point3D(x, y, z);
       points[order].push(point);
     } else {
-      triangle = new Triangle(x, y, z);
+      triangle = new Triangle(x-1, y-1, z-1);
       triangles[order].push(triangle);
     }
   }

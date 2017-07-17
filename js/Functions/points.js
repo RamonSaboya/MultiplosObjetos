@@ -13,11 +13,11 @@ function Point2D (x, y, index) {
 }
 
 // funcoes de pontos 3D
-Point3D.prototype.baseChange = function(camera) {
+Point3D.prototype.changeBase = function() {
   var pWorld = this;
   var v = pWorld.subtraction(camera.c);
   var pView = v.matrixProduct(camera.alpha);
-  
+
   return pView;
 }
 
@@ -26,7 +26,7 @@ Point3D.prototype.subtraction = function(point){
   var y = this.y - point.y;
   var z = this.z - point.z;
 
-  return new Point3D(x, y, z);  
+  return new Point3D(x, y, z);
 }
 
 Point3D.prototype.matrixProduct = function(matrix) {
@@ -40,16 +40,16 @@ Point3D.prototype.matrixProduct = function(matrix) {
 Point3D.prototype.transform2D = function(camera , index) {
   var x = (camera.d / camera.hx) * (this.x / this.z);
   var y = (camera.d / camera.hy) * (this.y / this.z);
-  
+
   x = (x + 1) * (width / 2);
   y = (1 - x) * (height / 2);
-  
+
   var p2D = new Point2D(x, y, index);
   p2D.round();
   p2d.normal = this.normal;
-  
+
   return
-  
+
 }
 
 // funcoes de pontos 2D
@@ -57,5 +57,3 @@ Point2D.prototype.round = function() {
   this.x = Math.floor(this.x);
   this.y = Math.floor(this.y);
 }
-
-
