@@ -4,10 +4,12 @@ function Vector (x, y, z) {
   this.z = z;
 }
 
+// Função que retorna a norma do vetor
 Vector.prototype.norm = function(){
   return Math.sqrt(this.innerProduct(this));
 }
 
+// Função de normalização do vetor
 Vector.prototype.normalize = function(vector) {
   var norm = this.norm();
   
@@ -20,14 +22,17 @@ Vector.prototype.normalize = function(vector) {
   this.z /= norm;
 };
 
+// Função do produto interno entre dois vetores
 Vector.prototype.innerProduct = function(vector){
   return (this.x * vector.x + this.y * vector.y + this.z * vector.z);
 };
 
+// Processo de Gram Schmidt 
 Vector.prototype.gramSchmidt = function(vector){
   return this.subtraction(vector.orthogonalProjection(this));
 };
 
+// Projeção ortogonal de vetores
 Vector.prototype.orthogonalProjection = function(vector){
   var result = this.innerProduct(vector) / this.innerProduct(this);
   
@@ -36,6 +41,7 @@ Vector.prototype.orthogonalProjection = function(vector){
   return vec.scalarProduct(result);
 };
 
+// Função do produto escalar
 Vector.prototype.scalarProduct = function(value){
   var x = this.x * value;
   var y = this.y * value;
@@ -44,6 +50,7 @@ Vector.prototype.scalarProduct = function(value){
   return new Vector(x, y, z);
 };
 
+// Função de subtração de dois vetores
 Vector.prototype.subtraction = function(vector){
   var x = this.x - vector.x;
   var y = this.y - vector.y;
@@ -52,6 +59,7 @@ Vector.prototype.subtraction = function(vector){
   return new Vector(x, y, z);
 };
 
+// Função de Produto vetorial entre dois vetores
 Vector.prototype.vectorProduct = function(vector){
   var x = (this.y * vector.z) - (this.z * vector.y);
   var y = (this.z * vector.x) - (this.x * vector.z);
