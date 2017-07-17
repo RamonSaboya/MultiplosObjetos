@@ -19,6 +19,12 @@ var startObject = function(file, order) {
       points[order].push(point);
     } else {
       triangle = new Triangle(x-1, y-1, z-1);
+
+      /* Saving the triangles that each point belongs to */
+      points[order][x-1].triangles.push(triangle);
+      points[order][y-1].triangles.push(triangle);
+      points[order][z-1].triangles.push(triangle);
+
       triangles[order].push(triangle);
     }
   }
