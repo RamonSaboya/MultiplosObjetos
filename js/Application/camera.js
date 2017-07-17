@@ -51,3 +51,7 @@ Camera.generateAlpha = function(){
 Camera.prototype.baseChange = function(point) {
   return point.baseChange(this);
 };
+
+Camera.prototype.pointProjection = function(point) {
+  return point.pointProjection(this);
+};

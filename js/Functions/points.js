@@ -5,15 +5,24 @@ function Point3D (x, y, z) {
   this.normal = new Vector(0, 0, 0);
 }
 
+function Point2D (x, y, index) {
+  this.x = x;
+  this.y = y;
+  this.index = index;
+  this.normal = new Vector(0, 0, 0);
+}
+
+Point2D.prototype.clonePoint = function() {
+  return new Point2D(this.x, this.y, this.index);
+};
+
 Point3D.prototype.clonePoint = function() {
   return new Point3D(this.x, this.y, this.z);
 };
 
 Point3D.prototype.baseChange = function(camera) {
   var pWorld = this.clonePoint();
-  
   var v = pWorld.subtraction(camera.c);
-  
   var pView = v.matrixProduct(camera.alpha);
   
   return pView;
@@ -35,3 +44,7 @@ Point3D.prototype.matrixProduct = function(matrix) {
   return new Point3D(x, y, z);
 };
 
+Point2D.prototype.round = function() {
+  this.x = Math.floor(this.x);
+  this.y = Math.floor(this.y);
+};
