@@ -13,7 +13,7 @@ O usuário, através de arquivos-texto ou interface gráfica, entra com a quanti
 Universidade Federal de Pernambuco <br />
 Centro de Informática <br />
 Gradução em Ciência da Computação <br />
-Programação Gráfica
+Processamento Gráfico
 
 ### Autores
 - Douglas Soares Lins | dsl@cin.ufpe.br
