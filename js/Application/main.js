@@ -58,10 +58,9 @@ var start = function(){
       triangles2D[i][j].organizeVertices();
 
       /* Check if is triangle */
-
-
-
       if(!triangles2D[i][j].isTriangle()) return;
+
+      
 
 
     });
