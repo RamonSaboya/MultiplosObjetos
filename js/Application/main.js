@@ -42,28 +42,32 @@ var start = function(){
     });
   });
 
-  /* Store 2D Triangles (same as 3D, but with 2D points) */
-
   var organizedVertex = [];
   triangles.forEach(function(obj, i){
     triangles2D[i] = [];
     obj.forEach(function(triangle, j){
+
+      /* Store 2D Triangles (same as 3D, but with 2D points) */
       var p1 = points2D[i][triangle.point1.index];
       var p2 = points2D[i][triangle.point2.index];
       var p3 = points2D[i][triangle.point3.index];
       var tri = new Triangle(p1, p2, p3);
       triangles2D[i].push(tri);
 
+      /* Organize the triangle vertices by y (if y are equal, compare x) */
       triangles2D[i][j].organizeVertices();
+
+      /* Check if is triangle */
+
+
+
+      if(!triangles2D[i][j].isTriangle()) return;
+
 
     });
   });
 
   console.log(triangles2D);
-
-
-
-
 
   draw();
 

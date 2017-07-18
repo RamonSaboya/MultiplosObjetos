@@ -26,6 +26,12 @@ Triangle.prototype.setAngularCoeficients = function() {
   this.ap3p1 = (this.point1.y - this.point3.y) / (this.point1.x - this.point3.x);
 }
 
+Triangle.prototype.setDistances = function() {
+  this.dp1p2 = Math.sqrt(Math.pow(this.point1.x - this.point2.x, 2) + Math.pow(this.point1.y - this.point2.y, 2));
+  this.dp2p3 = Math.sqrt(Math.pow(this.point2.x - this.point3.x, 2) + Math.pow(this.point2.y - this.point3.y, 2));
+  this.dp3p1 = Math.sqrt(Math.pow(this.point3.x - this.point1.x, 2) + Math.pow(this.point3.y - this.point1.y, 2));
+}
+
 Triangle.prototype.organizeVertices = function(){
   var array = [];
   array[0] = this.point1;
@@ -37,22 +43,28 @@ Triangle.prototype.organizeVertices = function(){
   while(!stop){
     for(i = 0; i < 2; i++){
       stop = true;
-      if(array[i].y < array[i+1].y) {
+      if(array[i].y < array[i+1].y) stop = false;
+      else if (array[i].y == array[i+1].y) {
+        if (array[i].x < array[i+1].x) stop = false;
+      }
+      if(!stop) {
         aux = array[i];
         array[i] = array[i+1];
         array[i+1] = aux;
         stop = false;
-      } else if (array[i].y == array[i+1].y) {
-        if (array[i].x < array[i+1].x) {
-          aux = array[i];
-          array[i] = array[i+1];
-          array[i+1] = aux;
-          stop = false;
-        }
       }
     }
   }
+
   this.point1 = array[0];
   this.point2 = array[1];
   this.point3 = array[2];
+}
+
+Triangle.prototype.isTriangle = function() {
+  this.setDistances();
+  if(this.dp1p2 >= this.dp3p1 + this.dp2p3) return false;
+  if(this.dp3p1 >= this.dp1p2 + this.dp2p3) return false;
+  if(this.dp2p3 >= this.dp1p2 + this.dp2p3) return false;
+  return true;
 }
