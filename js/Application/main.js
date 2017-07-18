@@ -1,5 +1,6 @@
 var points2D = [];
 var triangles2D = [];
+var paint = [];
 
 var start = function(){
 
@@ -41,6 +42,9 @@ var start = function(){
     });
   });
 
+  /* Store 2D Triangles (same as 3D, but with 2D points) */
+
+  var organizedVertex = [];
   triangles.forEach(function(obj, i){
     triangles2D[i] = [];
     obj.forEach(function(triangle, j){
@@ -49,8 +53,17 @@ var start = function(){
       var p3 = points2D[i][triangle.point3.index];
       var tri = new Triangle(p1, p2, p3);
       triangles2D[i].push(tri);
+
+      triangles2D[i][j].organizeVertices();
+
     });
   });
+
+  console.log(triangles2D);
+
+
+
+
 
   draw();
 
