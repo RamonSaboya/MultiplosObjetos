@@ -10,9 +10,15 @@ var ctx = c.getContext("2d");
 
 
 var draw = function() {
+  paint.forEach(function(obj){
+    ctx.fillStyle='red';
+    ctx.fillRect(obj.x,obj.y,1,1);
+  });
+
   points2D.forEach(function(obj){
     obj.forEach(function(point){
+      ctx.fillStyle="black";
       ctx.fillRect(point.x,point.y,1,1);
-    });
-  });
+    })
+  })
 }
