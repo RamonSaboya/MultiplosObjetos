@@ -52,7 +52,14 @@ Point3D.prototype.transform2D = function(j) {
   p2D.normal = this.normal;
 
   return p2D;
+}
 
+Point3D.prototype.transformVector = function() {
+  var x = this.x;
+  var y = this.y;
+  var z = this.z;
+
+  return new Vector(x, y, z);
 }
 
 // funcoes de pontos 2D
