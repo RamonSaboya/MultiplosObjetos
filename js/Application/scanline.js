@@ -1,8 +1,8 @@
-var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex) {
+var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex, alt) {
   for(y = ymin; y <= ymax; y++){
     for(x = xmin; x <= xmax; x++) {
 
-      // paint.push(new Point2D(x, y));
+      if(x < 0 || y < 0 || x >= width || y > height) continue;
 
       var coeficients = tri.getBaricentricCoordinates(x, y);
       var p1 = points[objectIndex][tri.point1.index];
@@ -15,6 +15,8 @@ var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex) {
 
       var p = new Point3D(px, py, pz);
 
+      x = Math.floor(x);
+      y = Math.floor(y);
       if(p.z < zbuffer[x][y]) {
         zbuffer[x][y] = p.z;
 
@@ -36,14 +38,25 @@ var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex) {
 
         var color = illumination.phong(n, v, l, p);
 
+        color = 'black';
         paint(x, y, color);
+
       }
 
-      if (alt && y == tri.point2.y) {
-        a1 = a3;
-        alt = false;
-      }
+    }
 
+    if (alt && y == tri.point2.y) {
+      a1 = a3;
+      alt = false;
+    }
+
+    if(a1 > 0) {
+      xmin += 1 / a1;
+      xmax += 1 / a2;
+    }
+    else {
+      xmin += 1 / a2;
+      xmax += 1 / a1;
     }
   }
 }

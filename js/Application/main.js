@@ -1,6 +1,7 @@
 var points2D = [];
 var triangles2D = [];
-var paint = [];
+var painte = [];
+var a1, a2, a3;
 
 var start = function(){
 
@@ -58,7 +59,7 @@ var start = function(){
       triangles2D[i][j].organizeVertices();
 
       /* Check if is triangle */
-      // if(!tri.isTriangle()) return;
+      if(!tri.isTriangle()) return;
 
       triangles2D[i][j].setAngularCoeficients();
 
@@ -73,9 +74,9 @@ var start = function(){
       p3 = tri.point3;
 
       /* Gets the angular coeficients */
-      var a1 = tri.ap1p2;
-      var a2 = tri.ap3p1;
-      var a3 = tri.ap2p3;
+      a1 = tri.ap1p2;
+      a2 = tri.ap3p1;
+      a3 = tri.ap2p3;
 
       /* Gets each xmin, xmax, ymin, ymax for the base case (pointy triangle) */
       var xmin = p1.x;
@@ -93,7 +94,7 @@ var start = function(){
       }
 
       /* Finally, call the scanline function */
-      scanline(xmin, xmax, ymin, ymax, tri, i);
+      scanline(xmin, xmax, ymin, ymax, tri, i, alt);
 
     });
   });

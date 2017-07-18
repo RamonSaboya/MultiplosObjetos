@@ -23,6 +23,7 @@ var draw = function() {
 }
 
 var paint = function(x, y, color) {
+  // console.log('hey');
   ctx.fillStyle = color;
   ctx.fillRect(x, y, 1, 1);
 }
