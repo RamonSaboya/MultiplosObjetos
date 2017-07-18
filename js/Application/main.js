@@ -75,6 +75,7 @@ var start = function(){
       /* Gets the angular coeficients */
       var a1 = tri.ap1p2;
       var a2 = tri.ap3p1;
+      var a3 = tri.ap2p3;
 
       /* Gets each xmin, xmax, ymin, ymax for the base case (pointy triangle) */
       var xmin = p1.x;
@@ -83,10 +84,12 @@ var start = function(){
       var ymin = p3.y;
 
       /* Checks if the triangle has no peak */
+      var alt = true;
       if(p1.y == p2.y) {
         xmin = p2.x;
         xmax = p1.x;
-        a1 = tri.ap2p3;
+        a1 = a3;
+        alt = false;
       }
 
       /* Finally, call the scanline function */
@@ -95,6 +98,6 @@ var start = function(){
     });
   });
 
-  draw();
+  // draw();
 
 }

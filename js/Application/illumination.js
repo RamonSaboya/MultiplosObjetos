@@ -35,5 +35,9 @@ function startIllumination(){
     var is = new Vector(getIs[0], getIs[1], getIs[2]);
 
     illumination = new Illumination(pl, ka, ia, kd, id, ks, is, n);
-    illumination.pl = pl.changeBase();    
+    illumination.pl = pl.changeBase();
+}
+
+Illumination.prototype.phong = function(n, v, l, p) {
+  
 }

@@ -8,7 +8,6 @@ c.width = width;
 
 var ctx = c.getContext("2d");
 
-
 var draw = function() {
   paint.forEach(function(obj){
     ctx.fillStyle='red';
@@ -21,4 +20,9 @@ var draw = function() {
       ctx.fillRect(point.x,point.y,1,1);
     })
   })
+}
+
+var paint = function(x, y, color) {
+  ctx.fillStyle = color;
+  ctx.fillRect(x, y, 1, 1);
 }

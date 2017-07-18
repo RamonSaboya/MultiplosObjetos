@@ -34,10 +34,16 @@ var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex) {
 
         if(v.innerProduct(n) < 0) n = n.scalarProduct(-1);
 
-        if(n.innerProduct(l) >= 0) {
+        var color = illumination.phong(n, v, l, p);
 
-        }
+        paint(x, y, color);
       }
+
+      if (alt && y == tri.point2.y) {
+        a1 = a3;
+        alt = false;
+      }
+
     }
   }
 }
