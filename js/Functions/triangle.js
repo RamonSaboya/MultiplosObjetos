@@ -68,3 +68,20 @@ Triangle.prototype.isTriangle = function() {
   if(this.dp2p3 >= this.dp1p2 + this.dp2p3) return false;
   return true;
 }
+
+Triangle.prototype.getBaricentricCoordinates = function(x, y) {
+  var dX = this.point1.x - this.point3.x;
+  var dY = this.point1.y - this.point3.y;
+
+  var beta = ((y - this.point3.y)*dX - (x - this.point3.x)*dY)/((this.point2.y - this.point3.y)*dX - (this.point2.x - this.point3.x)*dY);
+  var alpha = ((x - this.point3.x) - (this.point2.x - this.point3.x)*beta)/dX;
+  var gama = 1 - beta - alpha;
+
+  var coeficients = {
+    alpha: alpha,
+    beta: beta,
+    gama: gama
+  }
+
+  return coeficients;
+}

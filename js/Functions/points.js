@@ -20,7 +20,7 @@ Point3D.prototype.changeBase = function(triangles, i) {
   var pView = v.matrixProduct(camera.alpha);
   pView.triangles = triangles;
   pView.index = i;
-  
+
   return pView;
 }
 
@@ -40,14 +40,14 @@ Point3D.prototype.matrixProduct = function(matrix) {
   return new Point3D(x, y, z);
 }
 
-Point3D.prototype.transform2D = function() {
+Point3D.prototype.transform2D = function(j) {
   var x = (camera.d / camera.hx) * (this.x / this.z);
   var y = (camera.d / camera.hy) * (this.y / this.z);
 
   x = (x + 1) * (width / 2);
   y = (1 - y) * (height / 2);
 
-  var p2D = new Point2D(x, y, i);
+  var p2D = new Point2D(x, y, j);
   p2D.round();
   p2D.normal = this.normal;
 
