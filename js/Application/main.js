@@ -121,7 +121,4 @@ var start = function(){
 
     });
   });
-
-  // draw();
-
 }
