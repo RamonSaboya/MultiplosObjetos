@@ -81,18 +81,17 @@ Triangle.prototype.isTriangle = function() {
   return !((this.point1.x == this.point2.x && this.point1.y == this.point2.y) || (this.point1.x == this.point3.x && this.point1.y == this.point3.y) || (this.point2.x == this.point3.x && this.point2.y == this.point3.y));
 }
 
-Triangle.prototype.getBaricentricCoordinates = function(x, y) {
-  var dX = this.point1.x - this.point3.x;
-  var dY = this.point1.y - this.point3.y;
+Triangle.prototype.getBaricentricCoordinates = function(x, y, p1, p2, p3) {
+  var denom = (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
 
-  var beta = ((y - this.point3.y)*dX - (x - this.point3.x)*dY)/((this.point2.y - this.point3.y)*dX - (this.point2.x - this.point3.x)*dY);
-  var alpha = ((x - this.point3.x) - (this.point2.x - this.point3.x)*beta)/dX;
-  var gama = 1 - beta - alpha;
+	var	alpha = ((x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (y - p3.y)) / denom;
+	var	beta = ((p1.x - p3.x) * (y - p3.y) - (x - p3.x) * (p1.y - p3.y)) / denom;
+	var	gamma = 1.0 - alpha - beta;
 
   var coeficients = {
     alpha: alpha,
     beta: beta,
-    gama: gama
+    gamma: gamma
   }
 
   return coeficients;
