@@ -23,7 +23,16 @@ var draw = function() {
 }
 
 var paint = function(x, y, color) {
-  // console.log('hey');
-  ctx.fillStyle = color;
+  var s = convertToHex(color);
+  ctx.fillStyle = s;
   ctx.fillRect(x, y, 1, 1);
+}
+
+var convertToHex = function(color) {
+  var red = color.red.toString(16);
+  var blue = color.blue.toString(16);
+  var green = color.green.toString(16);
+
+  var s = '#' + red + green + blue;
+  return s;
 }

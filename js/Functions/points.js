@@ -62,6 +62,14 @@ Point3D.prototype.transformVector = function() {
   return new Vector(x, y, z);
 }
 
+Point3D.prototype.constantMult = function(k) {
+  var x = k * this.x;
+  var y = k * this.y;
+  var z = k * this.z;
+
+  return new Point3D(x, y, z);
+}
+
 // funcoes de pontos 2D
 Point2D.prototype.round = function() {
   this.x = Math.floor(this.x);

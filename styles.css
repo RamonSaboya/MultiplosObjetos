@@ -101,7 +101,14 @@ input[type='file'] {
   -moz-box-shadow: 0px 0px 14px 6px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 14px 6px rgba(0,0,0,0.75);
   margin: 0 auto;
-  background-color: white;
+  /*background-color: white;*/
+  /*background-image: url('assets/paper.jpg');
+  background-size: cover;*/
+  background-color: #fff;
+  background-image:
+  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
 }
 
 #aut {
