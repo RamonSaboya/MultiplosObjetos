@@ -1,7 +1,7 @@
 var points2D = [];
 var triangles2D = [];
 var painte = [];
-var a1, a2, a3;
+var a12, a13, a23;
 
 var start = function(){
 
@@ -56,16 +56,7 @@ var start = function(){
       triangles2D[i].push(tri);
 
       /* Organize the triangle vertices by y (if y are equal, compare x) */
-      triangles2D[i][j].organizeVertices();
-
-      /* Check if is triangle */
-      if(!tri.isTriangle()) return;
-
-      triangles2D[i][j].setAngularCoeficients();
-
-      /*
-       * Checking special triangle cases before scanline
-      */
+      triangles2D[i][j].orderVertices();
 
       /* Creates auxiliar variables */
       tri = triangles2D[i][j];
@@ -73,28 +64,94 @@ var start = function(){
       p2 = tri.point2;
       p3 = tri.point3;
 
-      /* Gets the angular coeficients */
-      a1 = tri.ap1p2;
-      a2 = tri.ap3p1;
-      a3 = tri.ap2p3;
+      var orient = Math.floor((p2.x - p1.x) * (p3.y - p1.y) - (p2.y - p1.y) * (p3.x - p1.x));
 
-      /* Gets each xmin, xmax, ymin, ymax for the base case (pointy triangle) */
+      var aux;
+      if(orient < 0){
+          /* The triangle is okay to be set */
+      } else if (orient > 0) {
+        aux = p2;
+        p2 = p3;
+        p3 = aux;
+      } else if (p2.x < p1.x && p3.x < p1.x) {
+        /* The triangle is okay to be set */
+      } else if (p2.x > p1.x && p3.x > p1.x) {
+        aux = p2;
+        p2 = p3;
+        p3 = aux;
+      } else if (p2.x < p3.x) {
+      } else {
+        aux = p2;
+        p2 = p3;
+        p3 = aux;
+      }
+
+      tri.p1 = p1;
+      tri.p2 = p2;
+      tri.p3 = p3;
+
+      if(!tri.isTriangle()) return;
+
+      var ymin = p1.y;
+      var ymax = Math.max(p2.y, p3.y);
       var xmin = p1.x;
       var xmax = p1.x;
-      var ymax = p1.y;
-      var ymin = p3.y;
 
-      /* Checks if the triangle has no peak */
+      tri.setAngularCoeficients();
+
+      a12 = tri.ap1p2;
+      a13 = tri.ap3p1;
+      a23 = tri.ap2p3;
+
       var alt = true;
+
       if(p1.y == p2.y) {
-        xmin = p2.x;
-        xmax = p1.x;
-        a1 = a3;
+        xmin = Math.min(p1.x, p2.x);
+        xmax = Math.max(p1.x, p2.x);
+
+        a12 = a23;
+        alt = false;
+      } else if (p1.y == p3.y) {
+        xmin = Math.min(p1.x, p3.x);
+        xmax = Math.max(p1.x, p3.x);
+
+        a13 = a23;
         alt = false;
       }
 
-      /* Finally, call the scanline function */
-      scanline(xmin, xmax, ymin, ymax, tri, i, alt);
+      scanline(Math.floor(xmin), Math.floor(xmax), ymin, ymax, tri, i, alt);
+
+
+
+
+      /* Check if is triangle */
+      // if(!tri.isTriangle()) return;
+      /*
+       * Checking special triangle cases before scanline
+      */
+
+      /* Gets the angular coeficients */
+      // a1 = tri.ap1p2;
+      // a2 = tri.ap3p1;
+      // a3 = tri.ap2p3;
+      //
+      // /* Gets each xmin, xmax, ymin, ymax for the base case (pointy triangle) */
+      // var xmin = p1.x;
+      // var xmax = p1.x;
+      // var ymax = p1.y;
+      // var ymin = p3.y;
+      //
+      // /* Checks if the triangle has no peak */
+      // var alt = true;
+      // if(p1.y == p2.y) {
+      //   xmin = p2.x;
+      //   xmax = p1.x;
+      //   a1 = a3;
+      //   alt = false;
+      // }
+      //
+      // /* Finally, call the scanline function */
+      // scanline(xmin, xmax, ymin, ymax, tri, i, alt);
 
     });
   });

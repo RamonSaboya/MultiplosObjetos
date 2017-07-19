@@ -32,33 +32,49 @@ Triangle.prototype.setDistances = function() {
   this.dp3p1 = Math.sqrt(Math.pow(this.point3.x - this.point1.x, 2) + Math.pow(this.point3.y - this.point1.y, 2));
 }
 
-Triangle.prototype.organizeVertices = function(){
-  var array = [];
-  array[0] = this.point1;
-  array[1] = this.point2;
-  array[2] = this.point3;
-
-  var stop = false;
+Triangle.prototype.orderVertices = function(){
+  // var array = [];
+  // array[0] = this.point1;
+  // array[1] = this.point2;
+  // array[2] = this.point3;
+  //
+  // var stop = false;
+  // var aux;
+  // while(!stop){
+  //   for(i = 0; i < 2; i++){
+  //     stop = true;
+  //     if(array[i].y < array[i+1].y) stop = false;
+  //     else if (array[i].y == array[i+1].y) {
+  //       if (array[i].x < array[i+1].x) stop = false;
+  //     }
+  //     if(!stop) {
+  //       aux = array[i];
+  //       array[i] = array[i+1];
+  //       array[i+1] = aux;
+  //       stop = false;
+  //     }
+  //   }
+  // }
+  //
+  // this.point1 = array[0];
+  // this.point2 = array[1];
+  // this.point3 = array[2];
   var aux;
-  while(!stop){
-    for(i = 0; i < 2; i++){
-      stop = true;
-      if(array[i].y < array[i+1].y) stop = false;
-      else if (array[i].y == array[i+1].y) {
-        if (array[i].x < array[i+1].x) stop = false;
-      }
-      if(!stop) {
-        aux = array[i];
-        array[i] = array[i+1];
-        array[i+1] = aux;
-        stop = false;
-      }
-    }
+  if(this.point1.y > this.point2.y) {
+    aux = this.point1;
+    this.point1 = this.point2;
+    this.point2 = aux;
   }
-
-  this.point1 = array[0];
-  this.point2 = array[1];
-  this.point3 = array[2];
+  if(this.point1.y > this.point3.y) {
+    aux = this.point1;
+    this.point1 = this.point3;
+    this.point3 = aux;
+  }
+  if(this.point2.y > this.point3.y) {
+    aux = this.point2;
+    this.point2 = this.point3;
+    this.point3 = aux;
+  }
 }
 
 Triangle.prototype.isTriangle = function() {
