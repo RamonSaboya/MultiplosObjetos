@@ -97,21 +97,25 @@ var start = function(){
       var xmin = p1.x;
       var xmax = p1.x;
 
-      tri.setAngularCoeficients();
+      // tri.setAngularCoeficients();
+      //
+      // a12 = tri.ap1p2;
+      // a13 = tri.ap3p1;
+      // a23 = tri.ap2p3;
 
-      a12 = tri.ap1p2;
-      a13 = tri.ap3p1;
-      a23 = tri.ap2p3;
+      a12 = (p2.y - p1.y) / (p2.x - p1.x);
+      a13 = (p3.y - p1.y) / (p3.x - p1.x);
+      a23 = (p3.y - p2.y) / (p3.x - p2.x);
 
       var alt = true;
 
-      if(p1.y == p2.y) {
+      if(Math.abs(p1.y - p2.y) == 0) {
         xmin = Math.min(p1.x, p2.x);
         xmax = Math.max(p1.x, p2.x);
 
         a12 = a23;
         alt = false;
-      } else if (p1.y == p3.y) {
+      } else if (Math.abs(p1.y - p3.y) == 0) {
         xmin = Math.min(p1.x, p3.x);
         xmax = Math.max(p1.x, p3.x);
 
@@ -119,7 +123,7 @@ var start = function(){
         alt = false;
       }
 
-      scanline(Math.floor(xmin), Math.floor(xmax), ymin, ymax, tri, i, alt);
+      scanline(Math.floor(xmin), Math.floor(xmax), ymin, ymax, p1, p2, p3, i, alt);
 
 
 

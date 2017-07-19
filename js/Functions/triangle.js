@@ -78,11 +78,7 @@ Triangle.prototype.orderVertices = function(){
 }
 
 Triangle.prototype.isTriangle = function() {
-  this.setDistances();
-  if(this.dp1p2 >= this.dp3p1 + this.dp2p3) return false;
-  if(this.dp3p1 >= this.dp1p2 + this.dp2p3) return false;
-  if(this.dp2p3 >= this.dp1p2 + this.dp2p3) return false;
-  return true;
+  return !((this.point1.x == this.point2.x && this.point1.y == this.point2.y) || (this.point1.x == this.point3.x && this.point1.y == this.point3.y) || (this.point2.x == this.point3.x && this.point2.y == this.point3.y));
 }
 
 Triangle.prototype.getBaricentricCoordinates = function(x, y) {

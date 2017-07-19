@@ -1,4 +1,4 @@
-var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex, alt) {
+var scanline = function(xmin, xmax, ymin, ymax, p1, p2, p3, objectIndex, alt) {
   for(y = ymin; y <= ymax; y++){
     for(x = xmin; x <= xmax; x++){
 
@@ -7,18 +7,18 @@ var scanline = function(xmin, xmax, ymin, ymax, tri, objectIndex, alt) {
       paint(x, y, 'black');
     }
 
-    if(alt && (y == tri.point2.y || y == tri.point3.y)) {
-      if(y == tri.point2.y) a12 = a23;
+    if(alt && (y == p2.y || y == p3.y)) {
+      if(y == p2.y) a12 = a23;
       else a13 = a23;
 
       alt = false;
     }
 
-    if(a12 != Infinity && a12 != -Infinity && a12 != 0) {
+    if(a12 != Infinity && a12 != -Infinity && a12 != 0 && !isNaN(a12)) {
       xmin += 1 / a12;
     }
 
-    if(a13 != Infinity && a13 != -Infinity && a13 != 0) {
+    if(a13 != Infinity && a13 != -Infinity && a13 != 0 && !isNaN(a13)) {
       xmax += 1 / a13;
     }
   }
