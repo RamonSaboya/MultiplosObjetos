@@ -54,8 +54,8 @@ Illumination.prototype.phong = function(n, v, l, p) {
 
     var r = (n.scalarProduct(2 * nl)).subtraction(l);
 
-    if (r.innerProduct(v) == 0){
-      specular = this.is.scalarProduct(this.ks * Math.pow(r, this.n));
+    if (r.innerProduct(v) > 0){
+      specular = this.is.scalarProduct(this.ks * Math.pow(r.innerProduct(v), this.n));
     }
   }
 
