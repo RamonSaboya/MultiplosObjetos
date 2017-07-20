@@ -120,6 +120,11 @@ input[type='file'] {
   cursor: not-allowed;
 }
 
+#close {
+  background-color:rgba(0, 0, 0, 0);
+  border: none;
+}
+
 @font-face {
     font-family: coco-gothic;
     src: url('./assets/CocoGothic-Light_trial.ttf');

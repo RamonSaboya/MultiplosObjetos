@@ -30,23 +30,25 @@ var addFile = function(param) {
 
         /* Creates a division between file names (multiple objects) */
         if (objectsFiles.length > 1) txtObj += " | "
-        else txtObj = '';
+        else txtObj = "<p class='badge'>";
 
-        txtObj += files[i].name;
+        txtObj += files[i].name + '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
       document.getElementById("objects").innerHTML = txtObj;
     }
     else if (param == 'cam') {
       if(files[i].name.includes('.cfg')){
         cameraFile = files[i];
-        txtCam = files[i].name;
+        txtCam = "<p class='badge'>" + files[i].name ;
+        txtCam += '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .cfg.");
       document.getElementById("camera").innerHTML = txtCam;
     }
     else {
       if(files[i].name.includes('.txt')){
         illuminationFile = files[i];
-        txtIlu = files[i].name;
+        txtIlu = "<p class='badge'>" + files[i].name;
+        txtIlu += '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .txt");
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
