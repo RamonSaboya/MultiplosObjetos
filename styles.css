@@ -144,6 +144,11 @@ input[type='file'] {
   cursor: not-allowed;
 }
 
+#labelCamDis, #labelIluDis {
+  background-color: #9fa098;
+  cursor: not-allowed;
+}
+
 #close {
   background-color:rgba(0, 0, 0, 0);
   border: none;

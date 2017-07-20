@@ -11,8 +11,6 @@ var txtIlu = 'Adicione um arquivo';
 /* Setting a variable for the FileReader API */
 var reader = new FileReader();
 
-var deleted = false;
-
 var files;
 var filesArray = [];
 
@@ -32,6 +30,7 @@ var addFile = function(param) {
       if(files[i].name.includes('.byu')){
 
         if(!files[i].hasRendered) files[i].hasRendered = false;
+        files[i].index = i;
         objectsFiles.push(files[i]);
 
         /* Creates a division between file names (multiple objects) */
@@ -64,6 +63,7 @@ var addFile = function(param) {
   };
 
   /* If every file has been sent, start calculations for each object file */
+
   if(objectsFiles.length > 0 && cameraFile && illuminationFile) {
     curObj = 0;
     html = 'Processando...<i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>';
@@ -74,10 +74,8 @@ var addFile = function(param) {
 }
 
 var removeObj = function(i) {
-  deleted = true;
   var index = objectsFiles.indexOf(files[i]);
   if (index > -1) objectsFiles.splice(index, 1);
-  console.log(objectsFiles);
   if(objectsFiles.length == 0) txtObj = 'Adicione múltiplos arquivos';
   else {
     txtObj = '';

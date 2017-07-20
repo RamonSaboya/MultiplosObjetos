@@ -131,5 +131,16 @@ var start = function() {
     html = 'Pronto! Esperando próxima entrada.';
     document.getElementById('loading').innerHTML = html;
     console.timeEnd('Total');
+    document.getElementById("ilumination").innerHTML = txtIlu.replace('<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>', '');
+    document.getElementById("camera").innerHTML = txtCam.replace('<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>', '');
+    document.getElementById('labelCam').outerHTML = '<label class="custom-file-upload" id="labelCamDis">+</label>'
+    document.getElementById('labelIlu').outerHTML = '<label class="custom-file-upload" id="labelIluDis">+</label>'
+
+    txtObj = '';
+    objectsFiles.forEach(function(obj){
+      txtObj += "<p class='badge'>" + obj.name + '</p>';
+      console.log('Hey');
+    });
+    document.getElementById("objects").innerHTML = txtObj;
   }
 }
