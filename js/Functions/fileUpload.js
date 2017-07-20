@@ -31,15 +31,16 @@ var addFile = function(param) {
         /* Creates a division between file names (multiple objects) */
         if (objectsFiles.length == 1) txtObj = "";
 
-        txtObj += "<p class='badge'>" + files[i].name + '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button></p>';
+        txtObj += "<p class='badge'>" + files[i].name + '<button id="close" onclick="removeObj('+i+')"><i class="fa fa-close"></i></button></p>';
       } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
       document.getElementById("objects").innerHTML = txtObj;
     }
     else if (param == 'cam') {
       if(files[i].name.includes('.cfg')){
         cameraFile = files[i];
+        console.log('hey');
         txtCam = "<p class='badge'>" + files[i].name ;
-        txtCam += '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
+        txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .cfg.");
       document.getElementById("camera").innerHTML = txtCam;
     }
@@ -51,7 +52,7 @@ var addFile = function(param) {
 
         illuminationFile = files[i];
         txtIlu = "<p class='badge'>" + files[i].name;
-        txtIlu += '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
+        txtIlu += '<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .txt");
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
@@ -65,4 +66,18 @@ var addFile = function(param) {
     console.time('Total');
     startCamera();
   }
+}
+
+var removeFile = function(fileNumber) {
+  
+}
+
+var removeCam = function(i) {
+  cameraFile = false;
+  document.getElementById("camera").innerHTML = 'Adicione um arquivo';
+}
+
+var removeIlu = function() {
+  cameraFile = false;
+  document.getElementById("camera").innerHTML = 'Adicione um arquivo';
 }
