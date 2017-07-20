@@ -26,8 +26,10 @@ var convertToHex = function(color) {
 var paintAll = function() {
   console.time("Pintando objetos no canvas");
   painte.forEach(function(point) {
-    var s = convertToHex(point.color);
-    ctx.fillStyle = s;
-    ctx.fillRect(point.x, point.y, 1, 1);
+    setTimeout(function() {
+      var s = convertToHex(point.color);
+      ctx.fillStyle = s;
+      ctx.fillRect(point.x, point.y, 1, 1);
+    }, 500)
   });
 }

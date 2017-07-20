@@ -143,5 +143,9 @@ var start = function() {
       txtObj += "<p class='badge'>" + obj.name + '</p>';
     });
     document.getElementById("objects").innerHTML = txtObj;
+
+    console.log("Total de pontos sem Z-Buffer: " + hi);
+    console.log("Total de pontos com Z-Buffer: " + hj);
+    console.log("Porcentagem de pontos renderizados: " + Math.floor((hj/hi)*100) + "%");
   }
 }
