@@ -51,8 +51,8 @@ var addFile = function(param) {
     else {
       if(files[i].name.includes('.txt')){
         /* Minonfy! */
-        var audio = new Audio('assets/illumination.mp3');
-        audio.play();
+        // var audio = new Audio('assets/illumination.mp3');
+        // audio.play();
 
         illuminationFile = files[i];
         txtIlu = "<p class='badge'>" + files[i].name;
@@ -66,7 +66,7 @@ var addFile = function(param) {
 
   if(objectsFiles.length > 0 && cameraFile && illuminationFile) {
     curObj = 0;
-    html = 'Processando...<i class="fa fa-circle-o-notch fa-spin" style="font-size:24px"></i>';
+    html = 'Processando... <i class="fa fa-circle-o-notch fa-spin"></i>';
     document.getElementById('loading').innerHTML = html;
     console.time('Total');
     startCamera();

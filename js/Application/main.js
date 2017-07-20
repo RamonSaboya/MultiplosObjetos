@@ -128,7 +128,7 @@ var start = function() {
     startObject(objectsFiles[curObj]);
   } else {
     paintAll();
-    html = 'Pronto! Esperando próxima entrada.';
+    html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
     document.getElementById('loading').innerHTML = html;
     console.timeEnd('Total');
     document.getElementById("ilumination").innerHTML = txtIlu.replace('<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>', '');
@@ -141,7 +141,6 @@ var start = function() {
     txtObj = '';
     objectsFiles.forEach(function(obj){
       txtObj += "<p class='badge'>" + obj.name + '</p>';
-      console.log('Hey');
     });
     document.getElementById("objects").innerHTML = txtObj;
   }
