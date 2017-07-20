@@ -39,11 +39,13 @@ function startIllumination(){
     illumination.pl = pl.changeBase();
 
     var obj = objectsFiles[curObj];
-    while(obj.hasRendered) {
-      curObj++;
-      obj = objectsFiles[curObj]
-    }
-    startObject(obj, curObj);
+    if(!deleted){
+      while(obj.hasRendered) {
+        curObj++;
+        obj = objectsFiles[curObj]
+      }
+      startObject(obj, curObj);
+    } else startObject(obj, curObj);
   }
 
 }

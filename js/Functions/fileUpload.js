@@ -11,6 +11,11 @@ var txtIlu = 'Adicione um arquivo';
 /* Setting a variable for the FileReader API */
 var reader = new FileReader();
 
+var deleted = false;
+
+var files;
+var filesArray = [];
+
 /*
  * This function gets the files and puts them on they're respective places
  * Also, it checks if every file has been sent before starting automatically
@@ -18,10 +23,11 @@ var reader = new FileReader();
 var addFile = function(param) {
 
   /* Gets the files from the HTML*/
-  var files = document.getElementById(param).files;
+  files = document.getElementById(param).files;
 
   /* For each kind of file, put it on their respective variables */
   for(i = 0; i < files.length; i++) {
+     filesArray[i] = files[i];
     if(param == 'objs') {
       if(files[i].name.includes('.byu')){
 
@@ -38,7 +44,6 @@ var addFile = function(param) {
     else if (param == 'cam') {
       if(files[i].name.includes('.cfg')){
         cameraFile = files[i];
-        console.log('hey');
         txtCam = "<p class='badge'>" + files[i].name ;
         txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .cfg.");
@@ -68,8 +73,19 @@ var addFile = function(param) {
   }
 }
 
-var removeFile = function(fileNumber) {
-  
+var removeObj = function(i) {
+  deleted = true;
+  var index = objectsFiles.indexOf(files[i]);
+  if (index > -1) objectsFiles.splice(index, 1);
+  console.log(objectsFiles);
+  if(objectsFiles.length == 0) txtObj = 'Adicione múltiplos arquivos';
+  else {
+    txtObj = '';
+    objectsFiles.forEach(function(obj){
+      txtObj += "<p class='badge'>" + obj.name + '<button id="close" onclick="removeObj('+filesArray.indexOf(obj)+')"><i class="fa fa-close"></i></button></p>';
+    });
+  }
+  document.getElementById("objects").innerHTML = txtObj;
 }
 
 var removeCam = function(i) {
@@ -78,6 +94,6 @@ var removeCam = function(i) {
 }
 
 var removeIlu = function() {
-  cameraFile = false;
-  document.getElementById("camera").innerHTML = 'Adicione um arquivo';
+  illuminationFile = false;
+  document.getElementById("ilumination").innerHTML = 'Adicione um arquivo';
 }
