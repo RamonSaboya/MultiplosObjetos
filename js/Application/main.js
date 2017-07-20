@@ -3,7 +3,13 @@ var triangles2D = [];
 var painte = [];
 var a12, a13, a23;
 
-var start = function(){
+var start = function(file){
+
+  console.log('hey');
+
+  startObjects();
+  startCamera();
+  startIllumination();
 
   /* Changing the base of the point based on the camera */
   points.forEach(function(obj, i){
@@ -122,5 +128,5 @@ var start = function(){
     });
   });
 
-  
+
 }

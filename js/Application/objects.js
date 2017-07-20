@@ -1,7 +1,12 @@
 var points = [];
 var triangles = [];
 
-var startObject = function(file, order) {
+var startObject = function(file) {
+  var string = '';
+  reader.readAsBinaryString(file);
+  reader.onloadend = function(event) {
+    // string = reader.result;
+  }
   points[order] = [];
   triangles[order] = [];
   var qtds = file.split("\n")[0];
