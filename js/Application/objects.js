@@ -6,7 +6,7 @@ var startObject = function(file) {
   /* The string that will store the file information */
   var string;
   fileName = file.name;
-  console.log('Lendo objeto ' + fileName)
+  console.time("Lendo objeto " + fileName);
 
   reader.readAsBinaryString(file);
 
@@ -47,6 +47,6 @@ var startObject = function(file) {
         triangles[order].push(triangle);
       }
     }
-    startCamera();
+    start();
   }
 }

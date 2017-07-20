@@ -9,7 +9,8 @@ var a12, a13, a23;
 
 var start = function() {
 
-  console.log("Realizando cálculos do objeto " + fileName);
+  console.timeEnd("Lendo objeto " + fileName);
+  console.time("Realizando cálculos do objeto " + fileName);
 
   var i = curObj;
   /* Changing the base of the point based on the camera */
@@ -120,11 +121,12 @@ var start = function() {
 
   });
 
+  console.timeEnd("Realizando cálculos do objeto " + fileName);
   if(curObj < objectsFiles.length - 1) {
     curObj++;
     startObject(objectsFiles[curObj]);
   } else {
     paintAll();
-    console.timeEnd('Hey');
+    console.timeEnd('Total');
   }
 }

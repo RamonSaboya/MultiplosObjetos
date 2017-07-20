@@ -41,7 +41,7 @@ function startIllumination(){
 
     illumination = new Illumination(pl, ka, ia, kd, id, ks, is, n);
     illumination.pl = pl.changeBase();
-    start();
+    startObject(objectsFiles[curObj], curObj);
   }
 
 }
