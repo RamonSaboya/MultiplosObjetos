@@ -29,25 +29,32 @@
       <div class="params">
         <div class="view">
           <p><strong>Adicionar objetos</strong></p>
-          <div id="objects">Adicione um arquivo</div>
+          <div id="objects"></div>
           <label class="custom-file-upload">
             <input type="file" id="objs" multiple onchange="addFile('objs')"/>+
           </label>
         </div>
         <div class="view">
           <p><strong>Câmera</strong></p>
-          <div id="camera">Adicione um arquivo</div>
+          <div id="camera"></div>
           <label class="custom-file-upload">
             <input type="file" id="cam" onchange="addFile('cam')"/>+
           </label>
         </div>
         <div class="view">
           <p><strong>Iluminação</strong></p>
-          <div id="ilumination">Adicione um arquivo</div>
+          <div id="ilumination"></div>
           <label class="custom-file-upload">
             <input type="file" id="ilum" onchange="addFile('ilum')"/>+
           </label>
         </div>
+
+        <script>
+          document.getElementById('objects').innerHTML = txtObj;
+          document.getElementById('camera').innerHTML = txtCam;
+          document.getElementById('ilumination').innerHTML = txtIlu;
+        </script>
+
       </div>
     </div>
 

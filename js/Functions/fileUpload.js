@@ -4,9 +4,9 @@ var illuminationFile;
 var cameraFile;
 
 /* These variables are the string on the HTML file */
-var txtObj = '';
-var txtCam = '';
-var txtIlu = '';
+var txtObj = 'Adicione múltiplos arquivos';
+var txtCam = 'Adicione um arquivo';
+var txtIlu = 'Adicione um arquivo';
 
 /* Setting a variable for the FileReader API */
 var reader = new FileReader();
@@ -30,10 +30,11 @@ var addFile = function(param) {
 
         /* Creates a division between file names (multiple objects) */
         if (objectsFiles.length > 1) txtObj += " | "
+        else txtObj = '';
 
         txtObj += files[i].name;
-        document.getElementById("objects").innerHTML = txtObj;
       } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
+      document.getElementById("objects").innerHTML = txtObj;
     }
     else if (param == 'cam') {
       if(files[i].name.includes('.cfg')){
