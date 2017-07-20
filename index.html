@@ -25,37 +25,42 @@
       </div>
     </div>
 
-    <div class="container-fluid">
+    <div class="files">
       <div class="params">
         <div class="view">
-          <p><strong>Adicionar objetos</strong></p>
-          <div id="objects">Adicione um arquivo</div>
-          <label class="custom-file-upload">
-            <input type="file" id="objs" onchange="addFile('objs')"/>+
+          <p class="fileTypes"><strong>Adicionar objetos</strong></p>
+          <div id="objects" class='fileNames'></div>
+          <label class="custom-file-upload" id="labelObj">
+            <input type="file" id="objs" multiple accept=".byu" onchange="addFile('objs')"/>+
           </label>
         </div>
         <div class="view">
-          <p><strong>Câmera</strong></p>
-          <div id="camera">Adicione um arquivo</div>
-          <label class="custom-file-upload">
-            <input type="file" id="cam" onchange="addFile('cam')"/>+
+          <p class="fileTypes"><strong>Câmera</strong></p>
+          <div id="camera" class='fileNames'></div>
+          <label class="custom-file-upload" id="labelCam">
+            <input type="file" id="cam" accept=".cfg" onchange="addFile('cam')"/>+
           </label>
         </div>
         <div class="view">
-          <p><strong>Iluminação</strong></p>
-          <div id="ilumination">Adicione um arquivo</div>
-          <label class="custom-file-upload">
-            <input type="file" id="ilum" onchange="addFile('ilum')"/>+
+          <p class="fileTypes"><strong>Iluminação</strong></p>
+          <div id="ilumination" class='fileNames'></div>
+          <label class="custom-file-upload" id="labelIlu">
+            <input type="file" id="ilum" accept=".txt" onchange="addFile('ilum')"/>+
           </label>
         </div>
-        <div id="startButton"></div>
+
+        <div id="loading">
+          Adicione arquivos de objeto, luz e câmera para começar.
+        </div>
+
         <script>
-          if(ableToStart) {
-            document.getElementById('startButton').innerHTML = "<button id='stbttn' onclick='start()'>Start</button>"
-          } else {
-            document.getElementById('startButton').innerHTML = "<button id='stbttn' onclick='start()' disabled>Start</button>"
-          }
+          document.getElementById('objects').innerHTML = txtObj;
+          document.getElementById('camera').innerHTML = txtCam;
+          document.getElementById('ilumination').innerHTML = txtIlu;
         </script>
+
+
+
       </div>
     </div>
 
@@ -74,7 +79,7 @@
           Luiz Henrique Tavares Caúla -
           <a href="https://www.cin.ufpe.br/~lhtc">lhtc</a> |
           Rodrigo Cunha da Silva -
-          <a href="https://www.cin.ufpe.br/~rcs8">rcs8</a> •
+          <a href="https://www.cin.ufpe.br/~rcs8">rcs<i style="font-family: Arial; font-style: normal">8</i></a> •
         <a href="https://www.ufpe.br"> Universidade Federal de Pernambuco </a>•
         <a href="https://www.cin.ufpe.br"> Ciência da Computação </a> •
         Processamento Gráfico </h5>

@@ -12,25 +12,23 @@ function Illumination(pl, ka, ia, kd, id, ks, is, n){
 }
 
 function startIllumination(){
-  var audio = new Audio('assets/illumination.mp3');
-  audio.play();
+  var string = '';
 
-    if (!illuminationFile){
-        return;
-    }
-
-    illuminationFile = illuminationFile.split('\n');
+  reader.readAsBinaryString(illuminationFile);
+  reader.onloadend = function(event){
+    string = reader.result;
+    string = string.split('\n');
 
     illumination = null;
 
-    var getPl = illuminationFile[0].split(' ');
-    var ka = illuminationFile[1];
-    var getIa = illuminationFile[2].split(' ');
-    var kd = illuminationFile[3];
-    var getId = illuminationFile[4].split(' ');
-    var ks = illuminationFile[5];
-    var getIs = illuminationFile[6].split(' ');
-    var n = illuminationFile[7];
+    var getPl = string[0].split(' ');
+    var ka = string[1];
+    var getIa = string[2].split(' ');
+    var kd = string[3];
+    var getId = string[4].split(' ');
+    var ks = string[5];
+    var getIs = string[6].split(' ');
+    var n = string[7];
 
     var pl = new Point3D(getPl[0], getPl[1], getPl[2]);
     var ia = new Vector(getIa[0], getIa[1], getIa[2]);
@@ -39,6 +37,15 @@ function startIllumination(){
 
     illumination = new Illumination(pl, ka, ia, kd, id, ks, is, n);
     illumination.pl = pl.changeBase();
+
+    var obj = objectsFiles[curObj];
+    while(obj.hasRendered) {
+      curObj++;
+      obj = objectsFiles[curObj]
+    }
+    startObject(obj, curObj);
+  }
+
 }
 
 Illumination.prototype.phong = function(n, v, l, p) {

@@ -11,17 +11,20 @@ function Camera(c, n, v, d, hx, hy) {
 }
 
 function startCamera(){
-    if (!cameraFile){
-        return;
-    }
+  var string = '';
+
+  reader.readAsBinaryString(cameraFile);
+  reader.onloadend = function(event){
+    string = reader.result;
+
     /* Split the three parameters from the file string */
-    cameraFile = cameraFile.split('\n');
+    string = string.split('\n');
 
     camera = null;
-    var getC = cameraFile[0].split(' ');
-    var getN = cameraFile[1].split(' ');
-    var getV = cameraFile[2].split(' ');
-    var getTela = cameraFile[3].split(' ');
+    var getC = string[0].split(' ');
+    var getN = string[1].split(' ');
+    var getV = string[2].split(' ');
+    var getTela = string[3].split(' ');
 
 
     var c = new Point3D(getC[0], getC[1], getC[2]);
@@ -34,6 +37,9 @@ function startCamera(){
 
     camera = new Camera(c, n, v, d, hx, hy);
     camera.generateAlpha();
+    startIllumination();
+  }
+
 
 }
 

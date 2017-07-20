@@ -4,53 +4,94 @@ var illuminationFile;
 var cameraFile;
 
 /* These variables are the string on the HTML file */
-var txtObj = '';
-var txtCam = '';
-var txtIlu = '';
+var txtObj = 'Adicione múltiplos arquivos';
+var txtCam = 'Adicione um arquivo';
+var txtIlu = 'Adicione um arquivo';
 
-var ableToStart = true;
-
-// if(ableToStart) {
-//   document.getElementById('startButton').innerHTML = '<button class="btn-primary" onclick="start()"> Vai na fé! </button>'
-// } else {
-//   document.getElementsByClassName('startButton').innerHTML = '<button class="btn-primary" onclick="start()" disabled> Vai na fé! </button>'
-// }
-
-var orderOfObjects = 0;
-
+/* Setting a variable for the FileReader API */
 var reader = new FileReader();
 
+var files;
+var filesArray = [];
+
+/*
+ * This function gets the files and puts them on they're respective places
+ * Also, it checks if every file has been sent before starting automatically
+*/
 var addFile = function(param) {
-  var files = document.getElementById(param).files;
 
+  /* Gets the files from the HTML*/
+  files = document.getElementById(param).files;
+
+  /* For each kind of file, put it on their respective variables */
   for(i = 0; i < files.length; i++) {
+     filesArray[i] = files[i];
+    if(param == 'objs') {
+      if(files[i].name.includes('.byu')){
 
-    reader.readAsBinaryString(files[i]);
+        if(!files[i].hasRendered) files[i].hasRendered = false;
+        files[i].index = i;
+        objectsFiles.push(files[i]);
 
-    if(param == "objs"){
-      if (objectsFiles.length >= 1) txtObj += " | "
-      txtObj += files[i].name;
-      reader.onloadend = function(event){
-        objectsFiles.push(reader.result);
-        startObject(reader.result, orderOfObjects);
-        orderOfObjects++;
-      }
+        /* Creates a division between file names (multiple objects) */
+        if (objectsFiles.length == 1) txtObj = "";
 
+        txtObj += "<p class='badge'>" + files[i].name + '<button id="close" onclick="removeObj('+i+')"><i class="fa fa-close"></i></button></p>';
+      } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
       document.getElementById("objects").innerHTML = txtObj;
-    } else if (param == "cam") {
-      txtCam = files[i].name;
-      reader.onloadend = function(event){
-        cameraFile = reader.result;
-        startCamera();
-      }
+    }
+    else if (param == 'cam') {
+      if(files[i].name.includes('.cfg')){
+        cameraFile = files[i];
+        txtCam = "<p class='badge'>" + files[i].name ;
+        txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
+      } else alert("Por favor, escolha um arquivo com extensão .cfg.");
       document.getElementById("camera").innerHTML = txtCam;
-    } else {
-      txtIlu = files[i].name;
-      reader.onloadend = function(event){
-        illuminationFile = reader.result;
-        startIllumination();
-      }
+    }
+    else {
+      if(files[i].name.includes('.txt')){
+        /* Minonfy! */
+        var audio = new Audio('assets/illumination.mp3');
+        audio.play();
+
+        illuminationFile = files[i];
+        txtIlu = "<p class='badge'>" + files[i].name;
+        txtIlu += '<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>';
+      } else alert("Por favor, escolha um arquivo com extensão .txt");
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
+  };
+
+  /* If every file has been sent, start calculations for each object file */
+
+  if(objectsFiles.length > 0 && cameraFile && illuminationFile) {
+    curObj = 0;
+    html = 'Processando... <i class="fa fa-circle-o-notch fa-spin"></i>';
+    document.getElementById('loading').innerHTML = html;
+    console.time('Total');
+    startCamera();
   }
+}
+
+var removeObj = function(i) {
+  var index = objectsFiles.indexOf(files[i]);
+  if (index > -1) objectsFiles.splice(index, 1);
+  if(objectsFiles.length == 0) txtObj = 'Adicione múltiplos arquivos';
+  else {
+    txtObj = '';
+    objectsFiles.forEach(function(obj){
+      txtObj += "<p class='badge'>" + obj.name + '<button id="close" onclick="removeObj('+filesArray.indexOf(obj)+')"><i class="fa fa-close"></i></button></p>';
+    });
+  }
+  document.getElementById("objects").innerHTML = txtObj;
+}
+
+var removeCam = function(i) {
+  cameraFile = false;
+  document.getElementById("camera").innerHTML = 'Adicione um arquivo';
+}
+
+var removeIlu = function() {
+  illuminationFile = false;
+  document.getElementById("ilumination").innerHTML = 'Adicione um arquivo';
 }

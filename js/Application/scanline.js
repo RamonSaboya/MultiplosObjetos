@@ -1,6 +1,11 @@
+var painte = [];
+var hi = 0;
+var hj = 0;
+
 var scanline = function(xmin, xmax, ymin, ymax, p1, p2, p3, objectIndex, alt) {
   for(y = ymin; y <= ymax; y++){
     for(x = xmin; x <= xmax; x++){
+      hi++;
 
       if(x < 0 || y < 0 || x >= width || y >= height) continue;
 
@@ -21,6 +26,7 @@ var scanline = function(xmin, xmax, ymin, ymax, p1, p2, p3, objectIndex, alt) {
       y = Math.floor(y);
       if(p.z < zbuffer[x][y]) {
         zbuffer[x][y] = p.z;
+        hj++;
 
         var nx = coeficients.alpha * point1.normal.x + coeficients.beta * point2.normal.x + coeficients.gamma * point3.normal.x;
         var ny = coeficients.alpha * point1.normal.y + coeficients.beta * point2.normal.y + coeficients.gamma * point3.normal.y;
@@ -39,7 +45,8 @@ var scanline = function(xmin, xmax, ymin, ymax, p1, p2, p3, objectIndex, alt) {
         if(v.innerProduct(n) < 0) n = n.scalarProduct(-1);
 
         var color = illumination.phong(n, v, l, p);
-        paint(x, y, color);
+        painte.push({x: x, y: y, color: color});
+        // paint(x, y, color);
 
       }
 
