@@ -23,30 +23,36 @@ var addFile = function(param) {
   /* For each kind of file, put it on their respective variables */
   for(i = 0; i < files.length; i++) {
     if(param == 'objs') {
-      objectsFiles.push(files[i]);
+        if(files[i].name.includes('.byu')){
+        objectsFiles.push(files[i]);
 
-      /* Creates a division between file names (multiple objects) */
-      if (objectsFiles.length > 1) txtObj += " | "
+        /* Creates a division between file names (multiple objects) */
+        if (objectsFiles.length > 1) txtObj += " | "
 
-      txtObj += files[i].name;
-      document.getElementById("objects").innerHTML = txtObj;
+        txtObj += files[i].name;
+        document.getElementById("objects").innerHTML = txtObj;
+      } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
+
     }
     else if (param == 'cam') {
-      cameraFile = files[i];
-      txtCam = files[i].name;
+      if(files[i].name.includes('.cfg')){
+        cameraFile = files[i];
+        txtCam = files[i].name;
+      } else alert("Por favor, escolha um arquivo com extensão .cfg.");
       document.getElementById("camera").innerHTML = txtCam;
     }
     else {
-      illuminationFile = files[i];
-      txtIlu = files[i].name;
+      if(files[i].name.includes('.txt')){
+        illuminationFile = files[i];
+        txtIlu = files[i].name;
+      } else alert("Por favor, escolha um arquivo com extensão .txt");
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
   };
 
   /* If every file has been sent, start calculations for each object file */
   if(objectsFiles.length > 0 && cameraFile && illuminationFile) {
-    objectsFiles.forEach(function(file, i){
-      start(file, i);
-    });
+    curObj = 0;
+    startObject(objectsFiles[curObj], curObj);
   }
 }

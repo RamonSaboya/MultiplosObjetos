@@ -22,3 +22,11 @@ var convertToHex = function(color) {
   var s = '#' + red + green + blue;
   return s;
 }
+
+var paintAll = function() {
+  painte.forEach(function(point) {
+    var s = convertToHex(point.color);
+    ctx.fillStyle = s;
+    ctx.fillRect(point.x, point.y, 1, 1);
+  });
+}

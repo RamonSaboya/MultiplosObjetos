@@ -31,7 +31,7 @@
           <p><strong>Adicionar objetos</strong></p>
           <div id="objects">Adicione um arquivo</div>
           <label class="custom-file-upload">
-            <input type="file" id="objs" onchange="addFile('objs')"/>+
+            <input type="file" id="objs" multiple onchange="addFile('objs')"/>+
           </label>
         </div>
         <div class="view">
@@ -48,14 +48,6 @@
             <input type="file" id="ilum" onchange="addFile('ilum')"/>+
           </label>
         </div>
-        <div id="startButton"></div>
-        <!-- <script>
-          if(ableToStart) {
-            document.getElementById('startButton').innerHTML = "<button id='stbttn' onclick='start()'>Start</button>"
-          } else {
-            document.getElementById('startButton').innerHTML = "<button id='stbttn' onclick='start()' disabled>Start</button>"
-          }
-        </script> -->
       </div>
     </div>
 

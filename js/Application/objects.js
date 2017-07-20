@@ -48,5 +48,6 @@ var startObject = function(file) {
         triangles[order].push(triangle);
       }
     }
+    startCamera();
   }
 }

@@ -7,15 +7,7 @@ var points2D = [];
 var triangles2D = [];
 var a12, a13, a23;
 
-var start = function(file, order){
-
-  /* Getting the file and converting the information
-   * on each file to values we can use
-  */
-  startObject(file);
-  startCamera();
-  startIllumination();
-
+var start = function() {
   /* Changing the base of the point based on the camera */
   points.forEach(function(obj, i){
     obj.forEach(function(point, j){
@@ -133,5 +125,10 @@ var start = function(file, order){
     });
   });
 
-
+  if(curObj < objectsFiles.length - 1) {
+    curObj++;
+    startObject(objectsFiles[curObj]);
+  } else {
+    paintAll();
+  }
 }
