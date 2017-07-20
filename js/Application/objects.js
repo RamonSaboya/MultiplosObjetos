@@ -12,11 +12,7 @@ var startObject = function(file) {
     string = reader.result;
 
     /* We need to know which is the order of the object so that we can properly store it */
-    var order = 0;
-    points.forEach(function(arr, i){
-      points[i+1] = [];
-      if (arr.length == 0) order = i; /* If the array is empty, it should be stored there */
-    });
+    var order = curObj;
 
     points[order] = [];
     triangles[order] = [];

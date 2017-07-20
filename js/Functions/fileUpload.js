@@ -53,6 +53,7 @@ var addFile = function(param) {
   /* If every file has been sent, start calculations for each object file */
   if(objectsFiles.length > 0 && cameraFile && illuminationFile) {
     curObj = 0;
+    console.time('Hey');
     startObject(objectsFiles[curObj], curObj);
   }
 }
