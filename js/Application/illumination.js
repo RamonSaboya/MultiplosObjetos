@@ -41,7 +41,13 @@ function startIllumination(){
 
     illumination = new Illumination(pl, ka, ia, kd, id, ks, is, n);
     illumination.pl = pl.changeBase();
-    startObject(objectsFiles[curObj], curObj);
+
+    var obj = objectsFiles[curObj];
+    while(obj.hasRendered) {
+      curObj++;
+      obj = objectsFiles[curObj]
+    }
+    startObject(obj, curObj);
   }
 
 }

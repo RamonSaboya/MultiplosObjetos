@@ -122,6 +122,7 @@ var start = function() {
   });
 
   console.timeEnd("Realizando cálculos do objeto " + fileName);
+  objectsFiles[curObj].hasRendered = true;
   if(curObj < objectsFiles.length - 1) {
     curObj++;
     startObject(objectsFiles[curObj]);

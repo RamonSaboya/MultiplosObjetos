@@ -23,7 +23,9 @@ var addFile = function(param) {
   /* For each kind of file, put it on their respective variables */
   for(i = 0; i < files.length; i++) {
     if(param == 'objs') {
-        if(files[i].name.includes('.byu')){
+      if(files[i].name.includes('.byu')){
+
+        if(!files[i].hasRendered) files[i].hasRendered = false;
         objectsFiles.push(files[i]);
 
         /* Creates a division between file names (multiple objects) */
@@ -32,7 +34,6 @@ var addFile = function(param) {
         txtObj += files[i].name;
         document.getElementById("objects").innerHTML = txtObj;
       } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
-
     }
     else if (param == 'cam') {
       if(files[i].name.includes('.cfg')){
