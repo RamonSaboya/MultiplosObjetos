@@ -24,6 +24,7 @@ var convertToHex = function(color) {
 }
 
 var paintAll = function() {
+  console.log("Pintando objetos no canvas");
   painte.forEach(function(point) {
     var s = convertToHex(point.color);
     ctx.fillStyle = s;

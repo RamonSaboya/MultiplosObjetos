@@ -1,9 +1,12 @@
 var points = [];
 var triangles = [];
+var fileName;
 
 var startObject = function(file) {
   /* The string that will store the file information */
   var string;
+  fileName = file.name;
+  console.log('Lendo objeto ' + fileName)
 
   reader.readAsBinaryString(file);
 

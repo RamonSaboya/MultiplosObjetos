@@ -9,12 +9,14 @@ var a12, a13, a23;
 
 var start = function() {
 
+  console.log("Realizando cálculos do objeto " + fileName);
+
   var i = curObj;
   /* Changing the base of the point based on the camera */
   points[i].forEach(function(point, j){
       points[i][j] = point.changeBase(points[i][j].triangles, j);
   });
-  
+
   triangles[i].forEach(function(triangle, j){
     /* Changing triangle points to match new points values */
     triangles[i][j].point1 = points[i][triangle.point1];
