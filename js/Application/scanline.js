@@ -1,4 +1,3 @@
-var painte = [];
 var hi = 0;
 var hj = 0;
 

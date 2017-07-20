@@ -30,12 +30,9 @@ var paintAll = function() {
     ctx.fillStyle = s;
     ctx.fillRect(point.x, point.y, 1, 1);
   });
+  console.timeEnd("Pintando objetos no canvas");
 }
 
 var cleanAll = function() {
-  painte.forEach(function(point){
-    ctx.fillStyle = 'rgba(255,255,255,1.0)';
-    ctx.clearRect(point.x, point.y, height, width);
-  });
   painte = [];
 }

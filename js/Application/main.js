@@ -8,6 +8,7 @@ var triangles2D = [];
 var a12, a13, a23;
 
 var start = function() {
+  ctx.clearRect(0, 0, width, height);
 
   console.timeEnd("Lendo objeto " + fileName);
   console.time("Realizando cálculos do objeto " + fileName);
@@ -128,6 +129,7 @@ var start = function() {
     startObject(objectsFiles[curObj]);
   } else {
     paintAll();
+    initializeZBuffer();
     html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
     document.getElementById('loading').innerHTML = html;
     console.timeEnd('Total');
