@@ -51,8 +51,8 @@ var addFile = function(param) {
     else {
       if(files[i].name.includes('.txt')){
         /* Minonfy! */
-        // var audio = new Audio('assets/illumination.mp3');
-        // audio.play();
+        var audio = new Audio('assets/illumination.mp3');
+        audio.play();
 
         illuminationFile = files[i];
         txtIlu = "<p class='badge'>" + files[i].name;
