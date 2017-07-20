@@ -1,13 +1,18 @@
+/*
+ * points2D stores the 3D point on 2D coordinates
+ * triangles2D stores the triangles, but with each 2D respective point
+ * a12, a13 and a23 are angular coeficients of a triangle
+*/
 var points2D = [];
 var triangles2D = [];
-var painte = [];
 var a12, a13, a23;
 
-var start = function(file){
+var start = function(file, order){
 
-  console.log('hey');
-
-  startObjects();
+  /* Getting the file and converting the information
+   * on each file to values we can use
+  */
+  startObject(file);
   startCamera();
   startIllumination();
 

@@ -45,8 +45,8 @@ var addFile = function(param) {
 
   /* If every file has been sent, start calculations for each object file */
   if(objectsFiles.length > 0 && cameraFile && illuminationFile) {
-    objectsFiles.forEach(function(file){
-      start(file);
+    objectsFiles.forEach(function(file, i){
+      start(file, i);
     });
   }
 }
