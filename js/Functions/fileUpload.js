@@ -29,10 +29,9 @@ var addFile = function(param) {
         objectsFiles.push(files[i]);
 
         /* Creates a division between file names (multiple objects) */
-        if (objectsFiles.length > 1) txtObj += " | "
-        else txtObj = "<p class='badge'>";
+        if (objectsFiles.length == 1) txtObj = "";
 
-        txtObj += files[i].name + '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
+        txtObj += "<p class='badge'>" + files[i].name + '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button></p>';
       } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
       document.getElementById("objects").innerHTML = txtObj;
     }
@@ -49,7 +48,7 @@ var addFile = function(param) {
         /* Minonfy! */
         var audio = new Audio('assets/illumination.mp3');
         audio.play();
-        
+
         illuminationFile = files[i];
         txtIlu = "<p class='badge'>" + files[i].name;
         txtIlu += '<button id="close" ng-click="removeRec(rec)"><i class="fa fa-close"></i></button>';
