@@ -128,6 +128,8 @@ var start = function() {
     startObject(objectsFiles[curObj]);
   } else {
     paintAll();
+    html = 'Pronto! Esperando próxima entrada.';
+    document.getElementById('loading').innerHTML = html;
     console.timeEnd('Total');
   }
 }

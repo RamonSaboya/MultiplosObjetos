@@ -147,9 +147,14 @@ input[type='file'] {
   border: none;
 }
 
+#loading {
+  font-family: coco-gothic;
+  margin: 6px;
+}
+
 @font-face {
-    font-family: coco-gothic;
-    src: url('./assets/CocoGothic-Light_trial.ttf');
+  font-family: coco-gothic;
+  src: url('./assets/CocoGothic-Light_trial.ttf');
 }
 
 @font-face {

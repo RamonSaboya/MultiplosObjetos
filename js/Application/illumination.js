@@ -12,10 +12,6 @@ function Illumination(pl, ka, ia, kd, id, ks, is, n){
 }
 
 function startIllumination(){
-  /* Minonfy! */
-  var audio = new Audio('assets/illumination.mp3');
-  audio.play();
-
   var string = '';
 
   reader.readAsBinaryString(illuminationFile);
