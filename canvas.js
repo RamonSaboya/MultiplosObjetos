@@ -31,3 +31,11 @@ var paintAll = function() {
     ctx.fillRect(point.x, point.y, 1, 1);
   });
 }
+
+var cleanAll = function() {
+  painte.forEach(function(point){
+    ctx.fillStyle = 'rgba(255,255,255,1.0)';
+    ctx.clearRect(point.x, point.y, height, width);
+  });
+  painte = [];
+}

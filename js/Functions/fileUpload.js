@@ -42,9 +42,18 @@ var addFile = function(param) {
     }
     else if (param == 'cam') {
       if(files[i].name.includes('.cfg')){
-        cameraFile = files[i];
-        txtCam = "<p class='badge'>" + files[i].name ;
-        txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
+        if(!cameraFile) {
+          cameraFile = files[i];
+          txtCam = "<p class='badge'>" + files[i].name ;
+          txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
+        } else {
+          cameraFile = files[i];
+          objectsFiles.forEach(function(obj){
+            obj.hasRendered = false;
+          });
+          cleanAll();
+        }
+
       } else alert("Por favor, escolha um arquivo com extensão .cfg.");
       document.getElementById("camera").innerHTML = txtCam;
     }
@@ -88,6 +97,7 @@ var removeObj = function(i) {
 
 var removeCam = function(i) {
   cameraFile = false;
+  cleanAll();
   document.getElementById("camera").innerHTML = 'Adicione um arquivo';
 }
 

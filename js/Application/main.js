@@ -131,21 +131,10 @@ var start = function() {
     html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
     document.getElementById('loading').innerHTML = html;
     console.timeEnd('Total');
-    document.getElementById("ilumination").innerHTML = txtIlu.replace('<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>', '');
-    document.getElementById("camera").innerHTML = txtCam.replace('<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>', '');
-    if(document.getElementById('labelCam') && document.getElementById('labelIlu')){
-      document.getElementById('labelCam').outerHTML = '<label class="custom-file-upload" id="labelCamDis">+</label>'
-      document.getElementById('labelIlu').outerHTML = '<label class="custom-file-upload" id="labelIluDis">+</label>'
-    }
-
-    txtObj = '';
-    objectsFiles.forEach(function(obj){
-      txtObj += "<p class='badge'>" + obj.name + '</p>';
-    });
-    document.getElementById("objects").innerHTML = txtObj;
 
     console.log("Total de pontos sem Z-Buffer: " + hi);
     console.log("Total de pontos com Z-Buffer: " + hj);
     console.log("Porcentagem de pontos renderizados: " + Math.floor((hj/hi)*100) + "%");
+    curObj = 0;
   }
 }
