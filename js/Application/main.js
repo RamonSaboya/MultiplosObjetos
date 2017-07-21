@@ -56,7 +56,7 @@ var start = function() {
     var tri = new Triangle(p1, p2, p3);
     triangles2D[i].push(tri);
 
-    /* Organize the triangle vertices by y (if y are equal, compare x) */
+    /* Organize the triangle vertices by y */
     triangles2D[i][j].orderVertices();
 
     /* Creates auxiliar variables */
@@ -133,10 +133,11 @@ var start = function() {
     html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
     document.getElementById('loading').innerHTML = html;
     console.timeEnd('Total');
-
     console.log("Total de pontos sem Z-Buffer: " + hi);
     console.log("Total de pontos com Z-Buffer: " + hj);
     console.log("Porcentagem de pontos renderizados: " + Math.floor((hj/hi)*100) + "%");
     curObj = 0;
+    hi = 0;
+    hj = 0;
   }
 }

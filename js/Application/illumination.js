@@ -40,10 +40,6 @@ function startIllumination(){
     illumination.pl = pl.changeBase();
 
     var obj = objectsFiles[curObj];
-    while(obj.hasRendered) {
-      curObj++;
-      obj = objectsFiles[curObj]
-    }
     startObject(obj, curObj);
   }
 

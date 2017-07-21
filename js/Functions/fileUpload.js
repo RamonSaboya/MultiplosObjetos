@@ -37,7 +37,7 @@ var addFile = function(param) {
         /* Creates a division between file names (multiple objects) */
         if (objectsFiles.length == 1) txtObj = "";
 
-        txtObj += "<p class='badge'>" + files[i].name + '<button id="close" onclick="removeObj('+i+')"><i class="fa fa-close"></i></button></p>';
+        txtObj += "<p class='badge'>" + files[i].name + '<button id="close" onclick="removeObj('+objectsFiles.indexOf(files[i])+')"><i class="fa fa-close"></i></button></p>';
       } else alert("Por favor, escolha um arquivo de objeto de extensão .byu.")
       document.getElementById("objects").innerHTML = txtObj;
     }
@@ -45,15 +45,15 @@ var addFile = function(param) {
       if(files[i].name.includes('.cfg')){
         if(!cameraFile) {
           cameraFile = files[i];
-          txtCam = "<p class='badge'>" + files[i].name ;
-          txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
         } else {
           cameraFile = files[i];
           objectsFiles.forEach(function(obj){
             obj.hasRendered = false;
           });
+          painte = [];
         }
-
+        txtCam = "<p class='badge'>" + cameraFile.name ;
+        txtCam += '<button id="close" onclick="removeCam()"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .cfg.");
       document.getElementById("camera").innerHTML = txtCam;
     }
@@ -65,15 +65,17 @@ var addFile = function(param) {
           audio.play();
 
           illuminationFile = files[i];
-          txtIlu = "<p class='badge'>" + files[i].name;
-          txtIlu += '<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>';
         } else {
           illuminationFile = files[i];
+          console.log(files[i]);
           objectsFiles.forEach(function(obj){
             obj.hasRendered = false;
           });
-          console.log(files[i]);
+          painte = [];
+          initializeZBuffer();
         }
+        txtIlu = "<p class='badge'>" + illuminationFile.name;
+        txtIlu += '<button id="close" onclick="removeIlu()"><i class="fa fa-close"></i></button>';
       } else alert("Por favor, escolha um arquivo com extensão .txt");
       document.getElementById("ilumination").innerHTML = txtIlu;
     }
@@ -88,36 +90,57 @@ var addFile = function(param) {
     html = 'Processando... <i class="fa fa-circle-o-notch fa-spin"></i>';
     document.getElementById('loading').innerHTML = html;
     console.time('Total');
-    painte = [];
     startCamera();
   }
 }
 
 var removeObj = function(i) {
-  var index = objectsFiles.indexOf(files[i]);
-  if (index > -1) objectsFiles.splice(index, 1);
-  if(objectsFiles.length == 0) txtObj = 'Adicione múltiplos arquivos';
-  else {
+  html = 'Processando... <i class="fa fa-circle-o-notch fa-spin"></i>';
+  document.getElementById('loading').innerHTML = html;
+  var index = i;
+  objectsFiles.splice(i, 1);
+  if(objectsFiles.length > 0) {
     txtObj = '';
     objectsFiles.forEach(function(obj){
-      txtObj += "<p class='badge'>" + obj.name + '<button id="close" onclick="removeObj('+filesArray.indexOf(obj)+')"><i class="fa fa-close"></i></button></p>';
+      txtObj += "<p class='badge'>" + obj.name + '<button id="close" onclick="removeObj('+objectsFiles.indexOf(obj)+')"><i class="fa fa-close"></i></button></p>';
+      obj.hasRendered = false;
     });
+    startCamera();
+  } else {
+    txtObj = "Adicione múltiplos arquivos";
+    ctx.clearRect(0,0,width,height);
   }
+  painte = [];
+  curObj = 0;
   document.getElementById("objects").innerHTML = txtObj;
+  html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
+  document.getElementById('loading').innerHTML = html;
 }
 
 var removeCam = function(i) {
+  html = 'Processando... <i class="fa fa-circle-o-notch fa-spin"></i>';
+  document.getElementById('loading').innerHTML = html;
   cameraFile = false;
   objectsFiles.forEach(function(obj){
     obj.hasRendered = false;
   });
+  painte = [];
+  ctx.clearRect(0,0,width,height);
   document.getElementById("camera").innerHTML = 'Adicione um arquivo';
+  html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
+  document.getElementById('loading').innerHTML = html;
 }
 
 var removeIlu = function() {
+  html = 'Processando... <i class="fa fa-circle-o-notch fa-spin"></i>';
+  document.getElementById('loading').innerHTML = html;
   illuminationFile = false;
   objectsFiles.forEach(function(obj){
     obj.hasRendered = false;
   });
+  painte = [];
+  ctx.clearRect(0,0,width,height);
   document.getElementById("ilumination").innerHTML = 'Adicione um arquivo';
+  html = 'Pronto! Esperando próxima entrada <i class="fa fa-check"></i>';
+  document.getElementById('loading').innerHTML = html;
 }
