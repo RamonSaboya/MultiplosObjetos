@@ -25,9 +25,17 @@ var convertToHex = function(color) {
 
 var paintAll = function() {
   console.time("Pintando objetos no canvas");
-  painte.forEach(function(point) {
-    var s = convertToHex(point.color);
-    ctx.fillStyle = s;
-    ctx.fillRect(point.x, point.y, 1, 1);
+  ctx.clearRect(0,0,width,height);
+  painte.forEach(function(arr) {
+    arr.forEach(function(point){
+      var s = convertToHex(point.color);
+      ctx.fillStyle = s;
+      ctx.fillRect(point.x, point.y, 1, 1);
+    });
   });
+  console.timeEnd("Pintando objetos no canvas");
+}
+
+var cleanAll = function() {
+  painte = [];
 }

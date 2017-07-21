@@ -1,4 +1,3 @@
-var painte = [];
 var hi = 0;
 var hj = 0;
 
@@ -45,7 +44,8 @@ var scanline = function(xmin, xmax, ymin, ymax, p1, p2, p3, objectIndex, alt) {
         if(v.innerProduct(n) < 0) n = n.scalarProduct(-1);
 
         var color = illumination.phong(n, v, l, p);
-        painte.push({x: x, y: y, color: color});
+        if(!painte[curObj]) painte[curObj] = [];
+        painte[curObj].push({x: x, y: y, color: color});
         // paint(x, y, color);
 
       }

@@ -12,12 +12,13 @@ function Illumination(pl, ka, ia, kd, id, ks, is, n){
 }
 
 function startIllumination(){
+  var s = '';
   var string = '';
 
   reader.readAsBinaryString(illuminationFile);
   reader.onloadend = function(event){
-    string = reader.result;
-    string = string.split('\n');
+    s = reader.result;
+    string = s.split('\n');
 
     illumination = null;
 
@@ -39,10 +40,6 @@ function startIllumination(){
     illumination.pl = pl.changeBase();
 
     var obj = objectsFiles[curObj];
-    while(obj.hasRendered) {
-      curObj++;
-      obj = objectsFiles[curObj]
-    }
     startObject(obj, curObj);
   }
 
